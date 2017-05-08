@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Something from './Common/Something.jsx';
 
 class Template extends Component {
 

@@ -1,4 +1,12 @@
 import React, { Component } from 'react';
+import Dialogue from './Common/Dialogue.jsx';
+import Popup from './Common/Popup.jsx';
+import Start from './Views/Start.jsx';
+import Setup from './Views/Setup.jsx';
+import Main from './Views/Main.jsx';
+import Header from './Common/Header.jsx';
+import Undo from './Buttons/Undo.jsx';
+
 
 class Game extends Component {
 
@@ -229,13 +237,13 @@ class Game extends Component {
         {this.state.dialogue ? <Dialogue onNo={this.setDialogue} onYes={this.resetGame}/> : null}
         {this.state.popup && <Popup firstnumber={this.state.from} secondnumber={this.state.to} animation={this.state.style}/>}
         <div className={this.state.blurred ? "blurred" : "screen"}>
-          {this.state.start && <StartScreen onSetup={() => this.onSetup()}/>}
+          {this.state.start && <Start onSetup={() => this.onSetup()}/>}
 
-          {((this.state.players.length < 1) && !this.state.start) ? <SetupScreen createPlayers={() => this.createPlayers}/> : null}
+          {((this.state.players.length < 1) && !this.state.start) ? <Setup createPlayers={() => this.createPlayers}/> : null}
 
           <Header onClose={this.setDialogue}/>
-          <PlayerList players={this.state.players} onBanana={() => this.handleBanana} onBean={() => this.handleBean} addScore={() => this.addScore} onLoss={() => this.handleLoss}/>
-          {(this.state.history.length > 0) ? <UndoButton onClick={() => this.unDo()}/> : null}
+          <Main players={this.state.players} onBanana={() => this.handleBanana} onBean={() => this.handleBean} addScore={() => this.addScore} onLoss={() => this.handleLoss}/>
+          {(this.state.history.length > 0) ? <Undo onClick={() => this.unDo()}/> : null}
         </div>
       </div>
     );
