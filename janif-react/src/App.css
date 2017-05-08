@@ -1,24 +1,566 @@
-.App {
+html {
+  font-size: 3vw; /* ideally 2.5vw */
+  font-family: 'Nunito', sans-serif;
+  -webkit-touch-callout:none;
+  -webkit-user-select:none;
+  -khtml-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none;
+  -webkit-tap-highlight-color:rgba(0,0,0,0);
+}
+
+button {
+  margin: 0;
+}
+
+body {
+  background: #eee;
+  /* font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; */
+  font-family: 'Nunito', sans-serif;
+  font-weight: 600;
+  font-size: 1rem; /* 15px */
+  line-height: 1.7;
+  margin: 0;
+  padding: 1rem;
+}
+
+a {
+  color: #4183c4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+code {
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  font-family: "Bitstream Vera Sans Mono", Consolas, Courier, monospace;
+  font-size: 12px;
+  margin: 0 2px;
+  padding: 0px 5px;
+}
+
+h1, h2, h3, h4 {
+  font-weight: bold;
+  margin: 0 0 15px;
+  padding: 0;
+}
+
+h1 {
+  border-bottom: 1px solid #ddd;
+  font-size: 2.5em;
+  font-weight: bold;
+  margin: 0 0 15px;
+  padding: 0;
+}
+
+h2 {
+  border-bottom: 1px solid #eee;
+  font-size: 2em;
+}
+
+h3 {
+  font-size: 1.5em;
+}
+
+h4 {
+  font-size: 1.2em;
+}
+
+p, {
+  margin: 15px 0;
+}
+
+ul {
+  padding-left: 30px;
+}
+
+input {
+  margin: 0;
+  display: inline;
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+form {
+  padding: 0;
+  margin: 0;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.hidden {
+  visibility: hidden;
 }
 
-.App-intro {
-  font-size: large;
+.green {
+  background-color: #5fba7d;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.greenfont {
+  color: #5fba7d;
+}
+
+.blue {
+  background-color: #77F;
+}
+
+.red {
+  background-color: #B75F5F;
+}
+
+.player{
+  background: #dee;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 0.1rem solid #5fba7d;
+  /*border: 4px;
+  border-color: #9c9; */
+  border-radius: 0.2rem;
+  box-shadow: 0rem 0rem 1rem #444;
+  z-index: 1;
+}
+
+.name {
+  font-size: 3em;
+  padding: 0;
+  margin: 0;
+  line-height: 3rem;
+  margin-bottom: 1rem;
+  color: #444;
+}
+
+.buttonrow {
+  height: 5rem;
+  box-sizing: border-box;
+}
+
+.button {
+  border-color: #9c9;
+  border: 0.03em #9c9;
+  border-radius: 1em; /* 16px */
+  height: 100%;
+  font-size: 3em;
+  margin: 0;
+}
+
+.square {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.playerlist {
+  list-style-type: none;
+  padding-left: 0em;
+  margin: 0px;
+  margin-top: 5rem;
+}
+
+.scoreform {
+  display: inline;
+  float: left;
+  clear: none;
+  height: 5rem;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  width: auto;
+}
+
+.submit {
+  background-color: #5fba7d;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  color: #FFF;
+}
+
+.inputform {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  font-size: 3rem;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0 inset;
+  display: block;
+  text-align: center;
+}
+
+.buttoncontainer {
+  width: 5rem;
+  height: 5rem;
+  display: inline-block;
+  margin-right: 1rem;
+}
+
+.score {
+  background-color: #ada;
+  width: auto;
+  height: auto;
+  display: inline-block;
+  line-height: 0.8;
+  text-align: center;
+  padding: 1rem;
+  min-width: 3rem;
+}
+
+
+
+.righto {
+  float: right;
+}
+
+.last {
+  margin: 0;
+}
+
+.header {
+  width: 100%;
+  height: auto;
+  background-color: #5fba7d;
+  margin: 0;
+  padding: 3rem 1rem 1rem 0rem;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 999;
+  display: flex;
+  justify-content: space-around;
+  align-items: stretch;
+  color: #FFF;
+  font-size: 2rem;
+  line-height: 1rem;
+  text-align: center;
+}
+
+.close {
+  text-align: right;
+  margin-left: auto;
+  margin-right: 1rem;
+}
+
+.title {
+  text-align: center;
+}
+
+.help {
+  text-align: left;
+  margin-right: auto;
+  margin-left: 1rem;
+}
+
+.overlay {
+  background: rgba(40, 40, 40, 0.75);
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  position: fixed;
+  z-index: 900;
+  top: 0;
+  left: 0;
+  display: flex;
+}
+
+.transparent {
+  background: none;
+}
+
+.dialogue {
+  width: auto;
+  height: auto;
+  background-color: #dee;
+  padding: 1rem;
+  margin: auto;
+  z-index: 1100;
+  color: #FFF;
+  font-size: 3rem;
+  text-align: center;
+}
+
+.answers {
+  display: flex;
+  justify-content: space-around;
+  align-items: stretch;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.screen {
+  /* nothing to see here */
+  height: 100%;
+}
+
+.blurred {
+  filter: blur(1rem);
+}
+
+.startscreen {
+  margin: auto;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.startlogo, .startbutton, .starthelp, .addapp, .ready, .answer, .undobutton {
+  margin: auto;
+  display: block;
+  width: auto;
+  text-align: center;
+}
+
+.startlogo {
+  font-size: 7rem;
+  margin-top: auto;
+  margin-bottom: 6rem;
+  color: #5fba7d;
+}
+
+.startbutton, .starthelp, .addapp, .ready, .answer, .undobutton {
+  font-size: 3rem;
+  background-color: #5fba7d;
+  margin-bottom: 2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  border-radius: 0.2rem;
+  color: #FFF;
+}
+
+.newbutton {
+  -webkit-appearance: none;
+  font-family: 'Nunito', sans-serif;
+  font-size: 2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-top: 0;
+  color: #FFF;
+  margin: auto;
+  display: inline-block;
+  width: auto;
+  text-align: center;
+  outline: 0;
+  outline-style: none;
+  outline-width: 0;
+  box-sizing: content-box;
+  border-radius: 0.4rem;
+  border-style: none;
+  text-decoration: none;
+  height: 4rem;
+  flex-grow: 1;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  vertical-align: middle;
+  line-height: 2;
+}
+
+.setupplayerlist {
+  margin-top: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  flex-wrap: nowrap;
+  padding-left: 0;
+  padding-bottom: 1rem;
+}
+
+.setupplayerlist li{
+  text-align: center;
+  list-style: none;
+}
+
+.setupplayerlist ul{
+  padding: 0;
+  margin-bottom: 0;
+}
+
+.playername {
+
+}
+
+.setupform {
+  width: 100%;
+  padding: 1rem;
+  background: none;
+  display: block;
+  flex-direction: row;
+  justify-content: space-around;
+  box-sizing: border-box;
+  margin-top: 0;
+}
+
+.namefield, .namesubmit {
+  font-size: 2rem;
+
+  padding: 1rem;
+}
+
+.namefield {
+  display: block;
+  background: none;
+  flex-grow: 2;
+  flex-shrink: 1;
+  margin: 0;
+  box-sizing: border-box;
+  width: 100%;
+  vertical-align: bottom;
+  border: none;
+  border-bottom: 0.2rem solid #CCC;
+  margin-bottom: 1rem;
+  font-family: 'Nunito', sans-serif;
+}
+
+.newnamefield {
+
+}
+
+.newnamesubmit {
+
+}
+
+
+
+.namesubmit {
+  display: block;
+  width: auto;
+  background: #77F;
+  color: #FFF;
+  flex-grow: 1;
+}
+
+.setupscreen {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%
+}
+
+.prompt {
+  color: #444;
+}
+
+.buttonchoices {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.popup {
+  width: 12rem;
+  height: 12rem;
+  /*background-color: #dee;*/
+  background-color: none;
+  padding: 1rem;
+  margin: auto;
+  z-index: 1100;
+  text-align: center;
+  border-radius: 0.4rem;
+}
+
+.flip, .flop, .swap, .swop, .sixtynine, .sixtynone, .fifty, .fifto {
+  font-size: 10rem;
+  text-align: center;
+  animation-fill-mode: forwards;
+  position: absolute;
+  margin: auto;
+  opacity: 0;
+  color: #444;
+}
+
+.flip {
+  animation: flip 1.33s 0 ease 1;
+}
+
+.flop {
+  animation: flop 1.33s 0.66s ease 1;
+}
+
+.sixtynine {
+  animation: sixtynine 1.33s 0 ease 1;
+}
+
+.sixtynone {
+  animation: sixtynone 1.33s 0.66s ease 1;
+}
+
+.swap {
+  animation: swap 1s 0 ease 1;
+}
+
+.swop {
+  animation: swop 2s 0 ease 1;
+}
+
+.fifty {
+  animation: fifty 1s 0 ease 1;
+}
+
+.fifto {
+  animation: fifto 2s 0 ease 1;
+}
+
+@keyframes flip {
+  0% {transform: rotateY(0deg) scale(0); opacity: 0}
+  25% {transform: rotateY(0deg) scale(1); opacity: 1}
+  50% {transform: rotateY(0deg) scale(1); opacity: 1}
+  100% {transform: rotateY(1080deg) scale(1); opacity: 0}
+}
+
+@keyframes flop {
+  0% {transform: rotateY(0deg) scale(1); opacity: 0}
+  50% {transform: rotateY(1080deg) scale(1); opacity: 1}
+  75% {transform: rotateY(1080deg) scale(1); opacity: 1}
+  100% {transform: rotateY(1080deg) scale(0); opacity: 0}
+}
+
+@keyframes swap {
+  0% {transform: translate(0,0) scale(0); opacity: 0}
+  25% {transform: translate(0,0) scale(1); opacity: 1}
+  50% {transform: translate(0, 0) scale(1); opacity: 1}
+  100% {transform: translate(25rem, 0) scale(1); opacity: 0}
+}
+
+@keyframes swop {
+  0% {transform: translate(-25rem, 0) scale(1); opacity: 0}
+  50% {transform: translate(0,0) scale(1); opacity: 1}
+  75% {transform: translate(0,0) scale(1); opacity: 1}
+  100% {transform: translate(0,0) scale(0); opacity: 0}
+}
+
+@keyframes sixtynine {
+  0% {transform: rotateZ(0deg) scale(0); opacity: 0}
+  25% {transform: rotateZ(0deg) scale(1); opacity: 1}
+  50% {transform: rotateZ(0deg) scale(1); opacity: 1}
+  100% {transform: rotateZ(1080deg) scale(1); opacity: 0}
+}
+
+@keyframes sixtynone {
+  0% {transform: rotateZ(0deg) scale(1); opacity: 0}
+  50% {transform: rotateZ(1080deg) scale(1); opacity: 1}
+  75% {transform: rotateZ(1080deg) scale(1); opacity: 1}
+  100% {transform: rotateZ(1080deg) scale(0); opacity: 0}
+}
+
+@keyframes fifty {
+  0% {transform: translate(0,0) scale(0); opacity: 0}
+  25% {transform: translate(0,0) scale(1); opacity: 1}
+  50% {transform: translate(0, 0) scale(1); opacity: 1}
+  100% {transform: translate(0, 40rem) scale(1); opacity: 0}
+}
+
+@keyframes fifto {
+  0% {transform: translate(0, -40rem) scale(1); opacity: 0}
+  50% {transform: translate(0,0) scale(1); opacity: 1}
+  75% {transform: translate(0,0) scale(1); opacity: 1}
+  100% {transform: translate(0,0) scale(0); opacity: 0}
 }

@@ -5,7 +5,9 @@ class Header extends Component {
   render() {
     return (
       <div className="header">
-        Header
+        <div className="help blurred">{'?'}</div>
+        <div className="title">{'Janif'}</div>
+        <div className="close" onClick={this.props.onClose}>{'X'}</div>
       </div>
     );
   }
