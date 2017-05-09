@@ -6,6 +6,7 @@ import Setup from './Views/Setup.jsx';
 import Main from './Views/Main.jsx';
 import Header from './Common/Header.jsx';
 import Undo from './Buttons/Undo.jsx';
+import ViewManager from './ViewManager.jsx';
 
 
 class Game extends Component {
@@ -231,7 +232,7 @@ class Game extends Component {
     ));
   }
 
-  render() {
+  /*render() {
     return (
       <div>
         {this.state.dialogue ? <Dialogue onNo={this.setDialogue} onYes={this.resetGame}/> : null}
@@ -245,6 +246,13 @@ class Game extends Component {
           <Main players={this.state.players} onBanana={() => this.handleBanana} onBean={() => this.handleBean} addScore={() => this.addScore} onLoss={() => this.handleLoss}/>
           {(this.state.history.length > 0) ? <Undo onClick={() => this.unDo()}/> : null}
         </div>
+      </div>
+    );
+  }*/
+  render() {
+    return (
+      <div className="Game">
+        <ViewManager />
       </div>
     );
   }
