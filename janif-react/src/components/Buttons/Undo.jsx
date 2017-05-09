@@ -4,9 +4,7 @@ class Undo extends Component {
 
   render() {
     return (
-      <div className="Undo">
-        Undo
-      </div>
+      <div className="undo" onClick={() => this.props.onClick()}>{'Undo ⤺'}</div>
     );
   }
 }
