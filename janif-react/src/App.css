@@ -152,7 +152,7 @@ form {
   overflow: hidden;
 }
 
-.playerlist {
+.main {
   list-style-type: none;
   padding-left: 0em;
   margin: 0px;
@@ -306,7 +306,7 @@ form {
   width: 100%;
 }
 
-.startlogo, .startbutton, .starthelp, .addapp, .ready, .answer, .undobutton {
+.startlogo, .startbutton, .starthelp, .addapp, .ready, .answer, .undo {
   margin: auto;
   display: block;
   width: auto;
@@ -320,7 +320,7 @@ form {
   color: #5fba7d;
 }
 
-.startbutton, .starthelp, .addapp, .ready, .answer, .undobutton {
+.startbutton, .starthelp, .addapp, .ready, .answer, .undo {
   font-size: 3rem;
   background-color: #5fba7d;
   margin-bottom: 2rem;
