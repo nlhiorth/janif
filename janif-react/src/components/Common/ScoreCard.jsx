@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './ScoreCard.css';
 import Forward from '../Buttons/Forward.jsx';
+import Backward from '../Buttons/Backward.jsx';
+import DuelLoss from '../Buttons/DuelLoss.jsx';
 
 class ScoreCard extends Component {
 
@@ -11,9 +13,13 @@ class ScoreCard extends Component {
           <div className="Name">{'NAME'}</div>
         </div>
         <div className="Body">
-          <div className="Score">{43}</div>
+          <div className="Score">{'+43'}</div>
           <div className="Buttons">
-          <Forward />
+            <Backward />
+            <DuelLoss />
+            <DuelLoss />
+            <DuelLoss />
+            <Forward />
           </div>
         </div>
       </div>
