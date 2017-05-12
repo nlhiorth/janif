@@ -33,11 +33,11 @@ class ScoreCard extends Component {
     return (
       <div className="ScoreCard">
         <div className="Header">
-          <div className="Name">{'NAME'}</div>
+          <div className="Name">{this.props.player.name}</div>
         </div>
         <div className="Body">
           <form onSubmit={this.onSubmit}>
-            <input value={this.state.input} onChange={this.onChange} ref={(input) => { this.textInput = input; }} className="Score" min="0" max="50" size="2" maxLength="2" pattern="\d*" placeholder="+0" autoFocus/>
+            <input value={this.state.input} onChange={this.onChange} ref={(input) => { this.textInput = input; }} className="Score" min="0" max="50" size="3" maxLength="2" pattern="\d*" placeholder="+0" autoFocus/>
           </form>
           <div className="Buttons">
             <Backward />
