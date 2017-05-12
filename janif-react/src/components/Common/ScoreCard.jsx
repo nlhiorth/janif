@@ -19,6 +19,16 @@ class ScoreCard extends Component {
     this.textInput.focus();
   }
 
+  next() {
+    this.props.next();
+    this.focus();
+  }
+
+  last() {
+    this.props.last();
+    this.focus();
+  }
+
   onChange(e) {
     this.setState({input : e.target.value});
   }
@@ -37,14 +47,14 @@ class ScoreCard extends Component {
         </div>
         <div className="Body">
           <form onSubmit={this.onSubmit}>
-            <input value={this.state.input} onChange={this.onChange} ref={(input) => { this.textInput = input; }} className="Score" min="0" max="50" size="3" maxLength="2" pattern="\d*" placeholder="+0" autoFocus/>
+            <input value={this.state.input} onChange={this.onChange} ref={(input) => { this.textInput = input; }} className="Score" min="0" max="50" size="3" maxLength="2" pattern="\d*" placeholder="+0" autoFocus={true}/>
           </form>
           <div className="Buttons">
-            <Backward />
+            <Backward onClick={() => this.last()}/>
             <DuelLoss />
             <DuelLoss />
             <DuelLoss />
-            <Forward />
+            <Forward onClick={() => this.next()}/>
           </div>
         </div>
       </div>

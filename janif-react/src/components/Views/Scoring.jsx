@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 import './Scoring.css';
 import ScoreCard from '../Common/ScoreCard.jsx';
 
 class Scoring extends Component {
   constructor(props) {
     super(props);
+    this.next = this.next.bind(this);
+    this.last = this.last.bind(this);
+
     this.state = {
       curplayer: 0,
       players: [
@@ -22,16 +26,24 @@ class Scoring extends Component {
     }
   }
 
-  renderPlayers() {
-    this.state.players.filter(player => (
-      player.id === this.state.curplayer;
-    ));
+  next() {
+    this.setState(prevState => ({
+      curplayer: prevState.curplayer + 1
+    }));
+  }
+
+  last() {
+    this.setState(prevState => ({
+      curplayer: prevState.curplayer - 1
+    }));
   }
 
   render() {
     return (
       <div className="Scoring">
-        <div>{this.renderPlayers()}</div>
+        <ScoreCard player={this.state.players.find(pl => (
+          pl.id === this.state.curplayer
+        ))} next={this.next} last={this.last}/>;
       </div>
     );
   }
