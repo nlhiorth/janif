@@ -1,6 +1,6 @@
 .ScoreCard {
   width: 90vw;
-  height: 90vw;
+  height: auto;
   border-style: solid;
   border-color: #6BB574;
   background-color: #FFFFFF;
@@ -37,6 +37,12 @@
   font-size: 9rem;
   text-align: center;
   color: #6BB574;
+  border: none;
+}
+
+.Body form {
+  display: flex;
+  justify-content: center;
 }
 
 .Buttons {

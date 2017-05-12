@@ -5,6 +5,29 @@ import Backward from '../Buttons/Backward.jsx';
 import DuelLoss from '../Buttons/DuelLoss.jsx';
 
 class ScoreCard extends Component {
+  constructor(props) {
+    super(props);
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+    this.focus = this.focus.bind(this);
+    this.state = {
+      input: ''
+    }
+  }
+
+  focus() {
+    this.textInput.focus();
+  }
+
+  onChange(e) {
+    this.setState({input : e.target.value});
+  }
+
+  onSubmit(e) {
+    e.preventDefault();
+    var score = this.state.input;
+    this.focus();
+  }
 
   render() {
     return (
@@ -13,7 +36,9 @@ class ScoreCard extends Component {
           <div className="Name">{'NAME'}</div>
         </div>
         <div className="Body">
-          <div className="Score">{'+43'}</div>
+          <form onSubmit={this.onSubmit}>
+            <input value={this.state.input} onChange={this.onChange} ref={(input) => { this.textInput = input; }} className="Score" min="0" max="50" size="2" maxLength="2" pattern="\d*" placeholder="+0" autoFocus/>
+          </form>
           <div className="Buttons">
             <Backward />
             <DuelLoss />
