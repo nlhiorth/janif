@@ -5,14 +5,20 @@
   border-color: #6BB574;
   background-color: #FFFFFF;
   box-shadow: 0 0 1.5rem #888888;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
+  justify-content: center;
 }
 
 .Header {
   background-color: #6BB574;
+  width: 100%;
 }
 
 .Body {
-  
+  width: 100%;
+  height: auto;
 }
 
 .Name {
