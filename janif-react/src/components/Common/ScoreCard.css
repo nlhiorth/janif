@@ -9,6 +9,7 @@
   flex-wrap: wrap;
   align-content: space-between;
   justify-content: center;
+  margin-top: 2rem;
 }
 
 .Header {
