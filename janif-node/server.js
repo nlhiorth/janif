@@ -32,18 +32,18 @@ function writeSessionData(sessionId, roomCode, players) {
   console.log('wrote session data for session: '+ sessionId);
 }
 
-function getRooms(){
-  const rooms = firebase.database().ref('roomsInUse');
-  return 0;
+function getSessions(){
+  const sessions = firebase.database().ref('session');
+  return sessions;
 }
 
 // REST API
-app.get('/rooms', function(req, res) {
-  return 0;
+app.get('/room', function(req, res) {
+  res.send(getRooms());
 });
 
-app.get('/room', function(req, res) {
-  firebase.database().ref('sessions/' + sessionId).set({
+app.post('/room', function(req, res) {
+  firebase.database().ref('session/' + sessionId).set({
     sessionId : sessionId,
     roomCode  : roomCode,
     players   : players,
@@ -52,38 +52,37 @@ app.get('/room', function(req, res) {
   res.send(roomNum);
 });
 
+// POST - url:3001/{sessionid}/score/
 app.post(/^\/(\d+)\/score\//, function(req, res) {
-  console.log(req.params[0])
-  console.log(req.body);
   firebase.database().ref('/session/'+req.params[0]+'/score/').set(
-    req.body.scoreupdate.map( (player) => (
-      {
+    req.body.scoreupdate.map(
+      (player) => ({
         userid    : player.id,
         score     : player.score,
         condition : player.condition,
-      }
-    )));
-  console.log("RECIEVED: " + JSON.stringify(req.body));
+      })));
   res.send("Data posted!" + req.params[0]);
 });
 
 
-app.get('/score', function(req, res) {
-  result = firebase.database().ref('score/' + sessionId).set({
-    userid    : userid,
-    score     : score,
-    condition : condition,
-  });
-  res.send(result);
+// POST - url:3001/{sessionid}/player/
+app.post(/^\/(\d+)\/players\//, function(req, res) {
+  firebase.database().ref('/session/'+req.params[0]+'/players/').set(
+    req.body.players.map(
+      (player) => ({
+        id    :   player.id,
+        score :   player.score,
+        name  :   player.name,
+        banana:   player.banana,
+        bean  :   player.bean,
+      })));
+  res.send("Data posted!" + req.params[0]);
 });
 
-app.post('/session', function(req, res) {
-  const sessionId = req.body.sessionId;
-  const roomCode  = req.body.roomCode;
-  const players   = req.body.players;
-  writeSessionData(sessionId, roomCode, players);
-  console.log("RECIEVED: " + JSON.stringify(req.body));
-  res.send("Data recieved!");
+// GET - url:3001/{sessionid}/score/
+app.get(/^\/(\d+)\/score\//, function(req, res) {
+  const result = database.ref("session/"+req.params[0]).getDatabase();
+  res.send(result);
 });
 
 // READY FOR CONNECTIONS
