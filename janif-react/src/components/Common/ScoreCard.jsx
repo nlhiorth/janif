@@ -11,7 +11,13 @@ class ScoreCard extends Component {
     this.onSubmit = this.onSubmit.bind(this);
     this.focus = this.focus.bind(this);
     this.state = {
-      input: ''
+      input: '',
+      change: {
+        id: props.player.id,
+        name: props.player.name,
+        score: props.player.score,
+        condition: props.player.condition
+      }
     }
   }
 
@@ -20,6 +26,17 @@ class ScoreCard extends Component {
   }
 
   next() {
+    console.log(this.props.player.id);
+    console.log(this.props.player.name);
+    console.log(this.state.input);
+    console.log(this.state.change.condition);
+    this.props.update({
+      id: this.props.player.id,
+      name: this.props.player.name,
+      score: this.state.input,
+      condition: this.state.condition
+    });
+    this.setState({input: ''});
     this.props.next();
     this.focus();
   }
@@ -30,7 +47,11 @@ class ScoreCard extends Component {
   }
 
   onChange(e) {
-    this.setState({input : e.target.value});
+    var str = e.target.value;
+    this.setState({input : str});
+    if (str.length === 2) {
+      this.next();
+    }
   }
 
   onSubmit(e) {
