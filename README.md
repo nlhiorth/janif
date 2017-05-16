@@ -32,7 +32,7 @@ scoreupdate: [
   {
     id: 1,
     score: 23,
-    condition: null
+    condition: 'normal'
   }
   {
     id: 2,
