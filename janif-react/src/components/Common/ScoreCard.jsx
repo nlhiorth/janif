@@ -4,6 +4,11 @@ import Forward from '../Buttons/Forward.jsx';
 import Backward from '../Buttons/Backward.jsx';
 import DuelLoss from '../Buttons/DuelLoss.jsx';
 
+
+/*
+Note to self, do everything in ScoreCard instead of Scoring
+*/
+
 class ScoreCard extends Component {
   constructor(props) {
     super(props);
@@ -11,13 +16,27 @@ class ScoreCard extends Component {
     this.onSubmit = this.onSubmit.bind(this);
     this.focus = this.focus.bind(this);
     this.state = {
-      input: '',
-      change: {
-        id: props.player.id,
-        name: props.player.name,
-        score: props.player.score,
-        condition: props.player.condition
-      }
+      curplayer: 0,
+      players: [
+        {
+          id: 0,
+          name: 'NILS',
+          score: '',
+          condition: 'normal'
+        },
+        {
+          id: 1,
+          name: 'CHRIS',
+          score: '',
+          condition: 'normal'
+        },
+        {
+          id: 2,
+          name: 'PINGIZ',
+          score: '',
+          condition: 'normal'
+        }
+      ],
     }
   }
 
@@ -26,29 +45,26 @@ class ScoreCard extends Component {
   }
 
   next() {
-    console.log(this.props.player.id);
-    console.log(this.props.player.name);
-    console.log(this.state.input);
-    console.log(this.state.change.condition);
-    this.props.update({
-      id: this.props.player.id,
-      name: this.props.player.name,
-      score: this.state.input,
-      condition: this.state.condition
-    });
-    this.setState({input: ''});
-    this.props.next();
+    this.setState(prevState => ({
+      curplayer: prevState.curplayer + 1
+    }));
     this.focus();
   }
 
   last() {
-    this.props.last();
+    this.setState(prevState => ({
+      curplayer: prevState.curplayer - 1
+    }));
     this.focus();
   }
 
   onChange(e) {
     var str = e.target.value;
-    this.setState({input : str});
+    const player = this.state.players[this.state.curplayer];
+    player.score = str;
+    this.setState(prevState => ({
+      players: prevState.players.map(pl => pl.id === this.state.curplayer ? player : pl)
+    }), (() => console.log(this.state.players)));
     if (str.length === 2) {
       this.next();
     }
@@ -64,11 +80,11 @@ class ScoreCard extends Component {
     return (
       <div className="ScoreCard">
         <div className="Header">
-          <div className="Name">{this.props.player.name}</div>
+          <div className="Name">{this.state.players[this.state.curplayer].name}</div>
         </div>
         <div className="Body">
           <form onSubmit={this.onSubmit}>
-            <input value={this.state.input} onChange={this.onChange} ref={(input) => { this.textInput = input; }} className="Score" min="0" max="50" size="3" maxLength="2" pattern="\d*" placeholder="+0" autoFocus={true}/>
+            <input value={this.state.players[this.state.curplayer].score} onChange={this.onChange} ref={(input) => { this.textInput = input; }} className="Score" min="0" max="50" size="3" maxLength="2" pattern="\d*" placeholder="+0" autoFocus={true}/>
           </form>
           <div className="Buttons">
             <Backward onClick={() => this.last()}/>
