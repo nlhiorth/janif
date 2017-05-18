@@ -45,16 +45,22 @@ class ScoreCard extends Component {
   }
 
   next() {
-    this.setState(prevState => ({
-      curplayer: prevState.curplayer + 1
-    }));
+    if (this.state.curplayer + 1 < this.state.players.length) {
+      this.setState(prevState => ({
+        curplayer: prevState.curplayer + 1
+      }));
+    } else {
+      // Go to next page
+    }
     this.focus();
   }
 
   last() {
-    this.setState(prevState => ({
-      curplayer: prevState.curplayer - 1
-    }));
+    if (this.state.curplayer > 0) {
+      this.setState(prevState => ({
+        curplayer: prevState.curplayer - 1
+      }));
+    }
     this.focus();
   }
 
