@@ -75,6 +75,13 @@ class ScoreCard extends Component {
   }
 
   next() {
+    const player = this.state.players[this.state.curplayer];
+    if (player.score === '') {
+      player.score = 0;
+      this.setState(prevState => ({
+        players: prevState.players.map(pl => pl.id === this.state.curplayer ? player : pl)
+      }));
+    }
     if (this.state.curplayer + 1 < this.state.players.length) {
       this.setState(prevState => ({
         curplayer: prevState.curplayer + 1
