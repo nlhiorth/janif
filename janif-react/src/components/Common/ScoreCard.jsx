@@ -3,6 +3,9 @@ import './ScoreCard.css';
 import Forward from '../Buttons/Forward.jsx';
 import Backward from '../Buttons/Backward.jsx';
 import DuelLoss from '../Buttons/DuelLoss.jsx';
+import Loss from '../Buttons/Loss.jsx';
+import Win from '../Buttons/Win.jsx';
+import Janif from '../Buttons/Janif.jsx';
 
 
 /*
@@ -44,6 +47,33 @@ class ScoreCard extends Component {
     this.textInput.focus();
   }
 
+  loss() {
+    const player = this.state.players[this.state.curplayer];
+    player.condition = 'loss';
+    player.score += 25;
+    this.setState(prevState => ({
+      players: prevState.players.map(pl => pl.id === this.state.curplayer ? player : pl)
+    }), (() => this.next()));
+  }
+
+  janif() {
+    const player = this.state.players[this.state.curplayer];
+    player.condition = 'janif';
+    player.score = 0;
+    this.setState(prevState => ({
+      players: prevState.players.map(pl => pl.id === this.state.curplayer ? player : pl)
+    }), (() => this.next()));
+  }
+
+  win() {
+    const player = this.state.players[this.state.curplayer];
+    player.condition = 'win';
+    player.score = -10;
+    this.setState(prevState => ({
+      players: prevState.players.map(pl => pl.id === this.state.curplayer ? player : pl)
+    }), (() => this.next()));
+  }
+
   next() {
     if (this.state.curplayer + 1 < this.state.players.length) {
       this.setState(prevState => ({
@@ -67,7 +97,7 @@ class ScoreCard extends Component {
   onChange(e) {
     var str = e.target.value;
     const player = this.state.players[this.state.curplayer];
-    player.score = str;
+    player.score = parseInt(str);
     this.setState(prevState => ({
       players: prevState.players.map(pl => pl.id === this.state.curplayer ? player : pl)
     }), (() => console.log(this.state.players)));
@@ -94,9 +124,9 @@ class ScoreCard extends Component {
           </form>
           <div className="Buttons">
             <Backward onClick={() => this.last()}/>
-            <DuelLoss />
-            <DuelLoss />
-            <DuelLoss />
+            <Loss condition={this.state.players[this.state.curplayer].condition} onClick={() => this.loss()}/>
+            <Janif condition={this.state.players[this.state.curplayer].condition} onClick={() => this.janif()}/>
+            <Win condition={this.state.players[this.state.curplayer].condition} onClick={() => this.win()}/>
             <Forward onClick={() => this.next()}/>
           </div>
         </div>
