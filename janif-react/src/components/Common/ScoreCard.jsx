@@ -43,7 +43,7 @@ class ScoreCard extends Component {
   }
 
   loss() {
-    const player = this.state.players[this.state.curplayer];
+    const player = Object.assign({}, this.state.players[this.state.curplayer]);
 
     if (player.condition === 'loss') {
       player.condition = 'none';
@@ -59,11 +59,11 @@ class ScoreCard extends Component {
   }
 
   janif() {
-    const player = this.state.players[this.state.curplayer];
+    const player = Object.assign({}, this.state.players[this.state.curplayer]);
 
     if (player.condition === 'janif') {
       player.condition = 'none';
-      player.score = '';
+      player.score = 0;
     } else {
       player.condition = 'janif';
       player.score = 0;
@@ -75,11 +75,11 @@ class ScoreCard extends Component {
   }
 
   win() {
-    const player = this.state.players[this.state.curplayer];
+    const player = Object.assign({}, this.state.players[this.state.curplayer]);
 
     if (player.condition === 'win') {
       player.condition = 'none';
-      player.score = '';
+      player.score = 0;
     } else {
       player.condition = 'win';
       player.score = -10;
@@ -91,7 +91,7 @@ class ScoreCard extends Component {
   }
 
   next() {
-    const player = this.state.players[this.state.curplayer];
+    const player = Object.assign({}, this.state.players[this.state.curplayer]);
     if (player.score === '') {
       player.score = 0;
       this.setState(prevState => ({
@@ -119,12 +119,19 @@ class ScoreCard extends Component {
 
   onChange(e) {
     var str = e.target.value;
-    const player = this.state.players[this.state.curplayer];
-    player.score = parseInt(str);
+    const player = Object.assign({}, this.state.players[this.state.curplayer]);
+
+    if (str === '') {
+      player.score = 0;
+    } else {
+      player.score = parseInt(str, 10);
+    }
+
     this.setState(prevState => ({
       players: prevState.players.map(pl => pl.id === this.state.curplayer ? player : pl)
-    }), (() => console.log(this.state.players)));
-    if (str.length === 2) {
+    }));
+
+    if (player.score > 9) {
       this.next();
     }
   }
