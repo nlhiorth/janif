@@ -7,11 +7,6 @@ import Loss from '../Buttons/Loss.jsx';
 import Win from '../Buttons/Win.jsx';
 import Janif from '../Buttons/Janif.jsx';
 
-
-/*
-Note to self, do everything in ScoreCard instead of Scoring
-*/
-
 class ScoreCard extends Component {
   constructor(props) {
     super(props);
@@ -49,8 +44,15 @@ class ScoreCard extends Component {
 
   loss() {
     const player = this.state.players[this.state.curplayer];
-    player.condition = 'loss';
-    player.score += 25;
+
+    if (player.condition === 'loss') {
+      player.condition = 'none';
+      player.score -= 25;
+    } else {
+      player.condition = 'loss';
+      player.score += 25;
+    }
+
     this.setState(prevState => ({
       players: prevState.players.map(pl => pl.id === this.state.curplayer ? player : pl)
     }), (() => this.next()));
@@ -58,8 +60,15 @@ class ScoreCard extends Component {
 
   janif() {
     const player = this.state.players[this.state.curplayer];
-    player.condition = 'janif';
-    player.score = 0;
+
+    if (player.condition === 'janif') {
+      player.condition = 'none';
+      player.score = '';
+    } else {
+      player.condition = 'janif';
+      player.score = 0;
+    }
+
     this.setState(prevState => ({
       players: prevState.players.map(pl => pl.id === this.state.curplayer ? player : pl)
     }), (() => this.next()));
@@ -67,8 +76,15 @@ class ScoreCard extends Component {
 
   win() {
     const player = this.state.players[this.state.curplayer];
-    player.condition = 'win';
-    player.score = -10;
+
+    if (player.condition === 'win') {
+      player.condition = 'none';
+      player.score = '';
+    } else {
+      player.condition = 'win';
+      player.score = -10;
+    }
+
     this.setState(prevState => ({
       players: prevState.players.map(pl => pl.id === this.state.curplayer ? player : pl)
     }), (() => this.next()));
