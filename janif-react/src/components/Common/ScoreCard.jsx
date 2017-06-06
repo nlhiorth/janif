@@ -46,7 +46,7 @@ class ScoreCard extends Component {
     const player = Object.assign({}, this.state.players[this.state.curplayer]);
 
     if (player.condition === 'loss') {
-      player.condition = 'none';
+      player.condition = 'normal';
       player.score -= 25;
     } else {
       player.condition = 'loss';
@@ -62,7 +62,7 @@ class ScoreCard extends Component {
     const player = Object.assign({}, this.state.players[this.state.curplayer]);
 
     if (player.condition === 'janif') {
-      player.condition = 'none';
+      player.condition = 'normal';
       player.score = 0;
     } else {
       player.condition = 'janif';
@@ -78,7 +78,7 @@ class ScoreCard extends Component {
     const player = Object.assign({}, this.state.players[this.state.curplayer]);
 
     if (player.condition === 'win') {
-      player.condition = 'none';
+      player.condition = 'normal';
       player.score = 0;
     } else {
       player.condition = 'win';

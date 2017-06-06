@@ -1,0 +1,61 @@
+.SummaryCard {
+  width: 90vw;
+  height: 5rem;
+  border-style: solid;
+  border-color: #6BB574;
+  background-color: #FFFFFF;
+  box-shadow: 0 0 1.5rem #888888;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.Header {
+  background-color: #6BB574;
+  width: 100%;
+}
+
+.Body {
+  width: 100%;
+  height: auto;
+}
+
+.Name {
+  font-family: helvetica;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 3rem;
+  text-align: center;
+  color: #FFFFFF;
+}
+
+.Score {
+  font-family: helvetica;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 9rem;
+  text-align: center;
+  color: #6BB574;
+  border: none;
+  width: 50%;
+}
+
+.Body form {
+  display: flex;
+  justify-content: center;
+}
+
+.Buttons {
+  height: 7rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.Buttons img {
+  display: inline-block;
+  height: 5rem;
+  width: 5rem;
+}
