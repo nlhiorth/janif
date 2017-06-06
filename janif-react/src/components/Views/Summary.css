@@ -1,4 +1,4 @@
-.Scoring {
+.Summary {
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -7,6 +7,16 @@
   align-content: flex-start;
   background-color: #7CB5AD;
 }
+
+.SummaryList {
+  padding: 0;
+  margin: 0;
+}
+
+.SummaryList li {
+  list-style-type: none;
+}
+
 .wipe-enter {
   opacity: 0.01;
   position: absolute;
