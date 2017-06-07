@@ -41,7 +41,9 @@ class Summary extends Component {
     return (
       <div className="Summary">
         <ol className="SummaryList">
-          {this.state.changes.map(player => (
+          {this.state.changes.sort((a, b) => {
+            return a.score - b.score
+          }).map(player => (
             <li key={player.id}>
               <SummaryCard name={player.name} score={player.score}/>
             </li>
