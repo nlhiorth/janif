@@ -11,7 +11,7 @@ class SummaryCard extends Component {
       <div className="SummaryCard">
         <div className="Name">{this.props.name}</div>
         <div className="Background">
-          <div className="Score">{this.props.score}</div>
+          <div className="Score">{(this.props.score >= 0) ? '+'+this.props.score : this.props.score}</div>
         </div>
       </div>
     );
