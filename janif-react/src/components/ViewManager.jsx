@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Scoring from './Views/Scoring.jsx'
 import Summary from './Views/Summary.jsx'
+import Main from './Views/Main.jsx'
 
 class ViewManager extends Component {
 
@@ -8,7 +9,8 @@ class ViewManager extends Component {
     return (
       <div className="ViewManager">
         {false && <Scoring />}
-        {true && <Summary />}
+        {false && <Summary />}
+        {true && <Main />}
       </div>
     );
   }

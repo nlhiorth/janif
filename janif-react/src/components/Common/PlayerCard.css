@@ -1,0 +1,56 @@
+.PlayerCard {
+  width: 40vw;
+  height: auto;
+  border-style: solid;
+  border-color: #6BB574;
+  background-color: #FFFFFF;
+  box-shadow: 0 0 1.5rem #888888;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
+  justify-content: center;
+  margin-top: 2rem;
+  margin-right: 0;
+}
+
+.Header {
+  background-color: #6BB574;
+  width: 100%;
+}
+
+.PlayerCard .Body {
+  height: auto;
+}
+
+.PlayerCard .Header .Name {
+  font-family: helvetica;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 2rem;
+  text-align: center;
+  color: #FFFFFF;
+}
+
+.PlayerCard .Body .Score {
+  font-family: helvetica;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 4rem;
+  text-align: center;
+  color: #6BB574;
+  border: none;
+  width: 50%;
+}
+
+.PlayerCard .Body .Buttons {
+  height: 5rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.PlayerCard .Body .Buttons img {
+  display: inline-block;
+  height: 3rem;
+  width: 3rem;
+}
