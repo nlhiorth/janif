@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PlayerCard from '../Common/PlayerCard.jsx';
+import Next from '../Buttons/Next.jsx';
 import './Main.css'
 
 class Main extends Component {
@@ -20,7 +21,7 @@ class Main extends Component {
         {
           id: 1,
           name: 'CHRIS',
-          score: 23,
+          score: 99,
           prevscore: 20,
           banana: true,
           bean: false,
@@ -29,7 +30,7 @@ class Main extends Component {
         {
           id: 2,
           name: 'PINGIZ',
-          score: 79,
+          score: 13,
           prevscore: 51,
           banana: false,
           bean: false,
@@ -51,15 +52,33 @@ class Main extends Component {
   render() {
     return (
       <div className="Main">
-        <ol className="PlayerList">
-          {this.state.players.sort((a, b) => {
-            return a.score - b.score
-          }).map(player => (
-            <li key={player.id}>
-              <PlayerCard player={player}/>
-            </li>
-          ))}
-        </ol>
+        <div className="LeftColumn">
+          <ol className="PlayerList">
+            {this.state.players.sort((a, b) => {
+              return a.score - b.score
+            }).filter((e, i) => {
+              return i % 2 === 0;
+            }).map(player => (
+              <li key={player.id}>
+                <PlayerCard player={player}/>
+              </li>
+            ))}
+          </ol>
+        </div>
+        <div className="RightColumn">
+          <Next label='CONTINUE'/>
+          <ol className="PlayerList">
+            {this.state.players.sort((a, b) => {
+              return a.score - b.score
+            }).filter((e, i) => {
+              return i % 2 === 1;
+            }).map(player => (
+              <li key={player.id}>
+                <PlayerCard player={player}/>
+              </li>
+            ))}
+          </ol>
+        </div>
       </div>
     );
   }
