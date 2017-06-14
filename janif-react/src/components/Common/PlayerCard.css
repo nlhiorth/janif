@@ -1,5 +1,5 @@
 .PlayerCard {
-  width: 40vw;
+  width: 100%;
   height: auto;
   border-style: solid;
   border-color: #6BB574;
@@ -11,9 +11,10 @@
   justify-content: center;
   margin-top: 2rem;
   margin-right: 0;
+  box-sizing: border-box;
 }
 
-.Header {
+.PlayerCard .Header {
   background-color: #6BB574;
   width: 100%;
 }

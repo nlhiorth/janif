@@ -11,13 +11,28 @@
 .Main .PlayerList {
   padding: 0;
   margin: 0;
-  width: 90vw;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: wrap;
+  align-items: flex-start;
 }
 
 .Main .PlayerList li {
   list-style-type: none;
   display: inline-block;
+  width: 100%;
+}
+
+.Main .LeftColumn, .Main .RightColumn {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 1rem;
+  width: 50%;
+}
+
+.Main .LeftColumn .PlayerList li:nth-child(1) .PlayerCard{
+  margin-top: 0;
 }
