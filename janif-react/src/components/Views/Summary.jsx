@@ -59,7 +59,7 @@ class Summary extends Component {
         </div>
         <div className="SummaryButtons">
           <Last label='GO BACK'/>
-          <Next label='CONTINUE' onClick={() => this.props.goto('main')}/>
+          <Next label='CONTINUE' onClick={() => this.props.goto({destination: 'main', header: true})}/>
         </div>
       </div>
     );
