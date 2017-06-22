@@ -66,7 +66,7 @@ class Main extends Component {
           </ol>
         </div>
         <div className="RightColumn">
-          <Next label='CONTINUE'/>
+          <Next label='CONTINUE' onClick={() => this.props.goto('scoring')}/>
           <ol className="PlayerList">
             {this.state.players.sort((a, b) => {
               return a.score - b.score

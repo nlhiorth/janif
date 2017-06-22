@@ -11,7 +11,7 @@ class Scoring extends Component {
   render() {
     return (
       <div className="Scoring">
-        <ScoreCard />
+        <ScoreCard goto={this.props.goto}/>
       </div>
     );
   }
