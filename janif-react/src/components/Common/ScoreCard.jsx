@@ -20,19 +20,29 @@ class ScoreCard extends Component {
           id: 0,
           name: 'NILS',
           score: '',
-          condition: 'normal'
+          condition: 'normal',
+          color: 'hsl(344, 33%, 56%)',
         },
         {
           id: 1,
           name: 'CHRIS',
           score: '',
-          condition: 'normal'
+          condition: 'normal',
+          color: 'hsl(58, 33%, 56%)',
         },
         {
           id: 2,
           name: 'PINGIZ',
           score: '',
-          condition: 'normal'
+          condition: 'normal',
+          color: 'hsl(205, 33%, 56%)',
+        },
+        {
+          id: 3,
+          name: 'PEPPERONI',
+          score: '',
+          condition: 'normal',
+          color: 'hsl(157, 33%, 56%)',
         }
       ],
     }
@@ -144,13 +154,13 @@ class ScoreCard extends Component {
 
   render() {
     return (
-      <div className="ScoreCard">
-        <div className="Header">
+      <div className="ScoreCard" style={{borderColor: this.state.players[this.state.curplayer].color}}>
+        <div className="Header" style={{backgroundColor: this.state.players[this.state.curplayer].color}}>
           <div className="Name">{this.state.players[this.state.curplayer].name}</div>
         </div>
         <div className="Body">
           <form onSubmit={this.onSubmit}>
-            <input value={this.state.players[this.state.curplayer].score} onChange={this.onChange} ref={(input) => { this.textInput = input; }} className="Score" min="0" max="50" size="3" maxLength="2" pattern="\d*" placeholder="+0" autoFocus={true}/>
+            <input value={this.state.players[this.state.curplayer].score} onChange={this.onChange} ref={(input) => { this.textInput = input; }} style={{color: this.state.players[this.state.curplayer].color}} className="Score" min="0" max="50" size="3" maxLength="2" pattern="\d*" placeholder="+0" autoFocus={true}/>
           </form>
           <div className="Buttons">
             <Backward onClick={() => this.last()}/>

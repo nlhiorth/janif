@@ -12,9 +12,9 @@ class ViewManager extends Component {
       <div className="ViewManager">
         <Header />
         <HeadSpace />
-        {false && <Scoring />}
+        {true && <Scoring />}
         {false && <Summary />}
-        {true && <Main />}
+        {false && <Main />}
       </div>
     );
   }
