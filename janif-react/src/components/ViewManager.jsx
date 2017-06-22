@@ -13,7 +13,7 @@ class ViewManager extends Component {
     super(props);
     this.goto = this.goto.bind(this);
     this.state = {
-      curView: 'summary',
+      curView: 'main',
     };
   }
 
