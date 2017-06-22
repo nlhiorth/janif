@@ -14,20 +14,22 @@ class ViewManager extends Component {
     this.goto = this.goto.bind(this);
     this.state = {
       curView: 'main',
+      header: true,
     };
   }
 
   goto(nextView) {
       this.setState((prevState) => ({
-        curView: nextView,
+        curView: nextView.destination,
+        header: nextView.header
       }), () => (console.log('Changed view to: ' + this.state.curView)));
   }
 
   render() {
     return (
       <div className="ViewManager">
-        <Header />
-        <HeadSpace />
+        {this.state.header && <Header />}
+        {this.state.header && <HeadSpace />}
         <CSSTransitionGroup
           transitionName="wipe"
           transitionEnterTimeout={500}

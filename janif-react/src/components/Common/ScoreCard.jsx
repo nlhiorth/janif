@@ -114,7 +114,7 @@ class ScoreCard extends Component {
       }));
     } else {
       // Go to next page
-      this.props.goto('summary');
+      this.props.goto({destination: 'summary', header: false});
     }
     this.focus();
   }
