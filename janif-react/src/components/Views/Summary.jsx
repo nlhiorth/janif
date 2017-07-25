@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 import './Summary.css';
 import SummaryCard from '../Common/SummaryCard.jsx';
 import Next from '../Buttons/Next.jsx';
