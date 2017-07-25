@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './ScoreCard.css';
 import Forward from '../Buttons/Forward.jsx';
 import Backward from '../Buttons/Backward.jsx';
-import DuelLoss from '../Buttons/DuelLoss.jsx';
 import Loss from '../Buttons/Loss.jsx';
 import Win from '../Buttons/Win.jsx';
 import Janif from '../Buttons/Janif.jsx';
@@ -149,7 +148,7 @@ class ScoreCard extends Component {
 
   onSubmit(e) {
     e.preventDefault();
-    var score = this.state.input;
+    /* var score = this.state.input; */
     this.focus();
   }
 

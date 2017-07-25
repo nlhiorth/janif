@@ -1,11 +1,4 @@
 import React, { Component } from 'react';
-import Dialogue from './Common/Dialogue.jsx';
-import Popup from './Common/Popup.jsx';
-import Start from './Views/Start.jsx';
-import Setup from './Views/Setup.jsx';
-import Main from './Views/Main.jsx';
-import Header from './Common/Header.jsx';
-import Undo from './Buttons/Undo.jsx';
 import ViewManager from './ViewManager.jsx';
 
 

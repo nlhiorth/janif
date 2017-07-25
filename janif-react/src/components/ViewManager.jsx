@@ -6,6 +6,9 @@ import Summary from './Views/Summary.jsx'
 import Main from './Views/Main.jsx'
 import Header from './Common/Header.jsx';
 import HeadSpace from './Common/HeadSpace.jsx';
+
+import MainView from '../containers/MainView.js'
+
 import './ViewManager.css';
 
 class ViewManager extends Component {
@@ -36,7 +39,7 @@ class ViewManager extends Component {
           transitionLeaveTimeout={500}>
           {(this.state.curView === 'scoring') && <Scoring key="scoring" goto={this.goto} />}
           {(this.state.curView === 'summary') && <Summary key="summary" goto={this.goto} />}
-          {(this.state.curView === 'main') && <Main key="main" goto={this.goto} />}
+          {(this.state.curView === 'main') && <MainView key="main" goto={this.goto} />}
         </CSSTransitionGroup>
       </div>
     );

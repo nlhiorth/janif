@@ -6,7 +6,7 @@ class Win extends Component {
 
   render() {
     return (
-      <img className="square button" src = {this.props.condition === 'win' ? used_banana : banana} onClick={() => this.props.onClick()} ></img>
+      <img className="square button" src={this.props.condition === 'win' ? used_banana : banana} onClick={() => this.props.onClick()} alt="Win"></img>
     );
   }
 }
