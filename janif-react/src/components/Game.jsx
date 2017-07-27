@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ViewManager from './ViewManager.jsx';
+import ViewManagerView from '../containers/ViewManagerView';
 
 
 class Game extends Component {
@@ -245,7 +245,7 @@ class Game extends Component {
   render() {
     return (
       <div className="Game">
-        <ViewManager />
+        <ViewManagerView />
       </div>
     );
   }

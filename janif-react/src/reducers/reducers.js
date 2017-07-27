@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { ADD_PLAYER, ADD_SCORE, USE_BANANA, USE_BEAN } from '../actions/actions.js';
+import { ADD_PLAYER, ADD_SCORE, USE_BANANA, USE_BEAN, ROUND_LOSS, ROUND_WIN, ROUND_JANIF, SET_POINTS, NEXT_PLAYER, PREV_PLAYER, GOTO_VIEW } from '../actions/actions.js';
 
 function players(state = [], action) {
   switch (action.type) {
@@ -7,13 +7,13 @@ function players(state = [], action) {
       return [
         ...state,
         {
-          name: action.name,
           id: state.length,
+          name: action.name,
           score: 0,
           prev: 0,
           banana: true,
           bean: true,
-          color: 'hsl(' + (action.name.split('').reduce((acc, curval) => acc * curval.codePointAt(0), 1) % 359) + ', 33%, 56%)'
+          color: 'hsl(' + (action.name.split('').reduce((acc, curval) => acc * (curval.codePointAt(0) - 64), 1) % 359) + ', 33%, 56%)'
         }
       ]
 
@@ -66,6 +66,118 @@ function player(state = {}, action) {
   }
 }
 
+function scoring(state = {rounds: [], curplayer: 0}, action) {
+  switch(action.type) {
+    case ADD_PLAYER: case ROUND_LOSS: case ROUND_WIN: case ROUND_JANIF: case SET_POINTS:
+      return Object.assign({}, state, {
+        rounds: rounds(state.rounds, action)
+      })
+
+    case NEXT_PLAYER:
+      if ((state.curplayer + 1) >= state.rounds.length) {
+        return state;
+      } else {
+        return Object.assign({}, state, {
+          curplayer: state.curplayer + 1
+        })
+      }
+
+    case PREV_PLAYER:
+      if ((state.curplayer - 1) < 0) {
+        return state;
+      } else {
+        return Object.assign({}, state, {
+          curplayer: state.curplayer - 1
+        })
+      }
+
+
+    default:
+      return state;
+  }
+}
+
+function rounds(state = [], action) {
+  switch (action.type) {
+    case ADD_PLAYER:
+      return [
+        ...state,
+        {
+          id: state.length,
+          points: '',
+          condition: "normal"
+        }
+      ]
+
+    case ROUND_LOSS: case ROUND_WIN: case ROUND_JANIF: case SET_POINTS:
+      return state.map(pl => (
+        round(pl, action)
+      ))
+
+    default:
+      return state;
+  }
+}
+
+function round(state = {}, action) {
+  switch (action.type) {
+    case ROUND_LOSS:
+      if (state.id !== action.id) {
+        return state;
+      }
+
+      return Object.assign({}, state, {
+        points: state.points + 25,
+        condition: "loss"
+      })
+
+    case ROUND_WIN:
+      if (state.id !== action.id) {
+        return state;
+      }
+
+      return Object.assign({}, state, {
+        points: state.points - 10,
+        condition: "win"
+      })
+
+    case ROUND_JANIF:
+      if (state.id !== action.id) {
+        return state;
+      }
+
+      return Object.assign({}, state, {
+        points: 0,
+        condition: "janif"
+      })
+
+    case SET_POINTS:
+      if (state.id !== action.id) {
+        return state;
+      }
+
+      return Object.assign({}, state, {
+        points: action.points
+      })
+
+    default:
+      return state;
+  }
+}
+
+function game(state = {curview: "main", header: true}, action) {
+  switch (action.type) {
+    case GOTO_VIEW:
+      return Object.assign({}, state, {
+        curview: action.view,
+        header: action.header
+      })
+
+    default:
+      return state;
+  }
+}
+
 function ruleModify(score) {
   // Rule of 69
   if (score === 69) {
@@ -89,7 +201,9 @@ function ruleModify(score) {
 }
 
 const janifApp = combineReducers({
-  players
+  players,
+  scoring,
+  game
 });
 
 export default janifApp;
