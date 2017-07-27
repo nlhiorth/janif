@@ -6,7 +6,7 @@ class Scoring extends Component {
   render() {
     return (
       <div className="Scoring">
-        <ScoreCard goto={this.props.goto}/>
+        <ScoreCard players={this.props.players} curplayer={this.props.scoring.curplayer} rounds={this.props.scoring.rounds} onLoss={this.props.onLoss} onWin={this.props.onWin} onJanif={this.props.onJanif} nextPlayer={this.props.nextPlayer} prevPlayer={this.props.prevPlayer} setPoints={this.props.setPoints}gotoView={this.props.gotoView}/>
       </div>
     );
   }

@@ -52,7 +52,7 @@ class ScoreCard extends Component {
   }
 
   loss() {
-    const player = Object.assign({}, this.state.players[this.state.curplayer]);
+    const player = Object.assign({}, this.state.players[this.props.curplayer]);
 
     if (player.condition === 'loss') {
       player.condition = 'normal';
@@ -63,12 +63,12 @@ class ScoreCard extends Component {
     }
 
     this.setState(prevState => ({
-      players: prevState.players.map(pl => pl.id === this.state.curplayer ? player : pl)
+      players: prevState.players.map(pl => pl.id === this.props.curplayer ? player : pl)
     }), (() => this.next()));
   }
 
   janif() {
-    const player = Object.assign({}, this.state.players[this.state.curplayer]);
+    const player = Object.assign({}, this.state.players[this.props.curplayer]);
 
     if (player.condition === 'janif') {
       player.condition = 'normal';
@@ -79,12 +79,12 @@ class ScoreCard extends Component {
     }
 
     this.setState(prevState => ({
-      players: prevState.players.map(pl => pl.id === this.state.curplayer ? player : pl)
+      players: prevState.players.map(pl => pl.id === this.props.curplayer ? player : pl)
     }), (() => this.next()));
   }
 
   win() {
-    const player = Object.assign({}, this.state.players[this.state.curplayer]);
+    const player = Object.assign({}, this.state.players[this.props.curplayer]);
 
     if (player.condition === 'win') {
       player.condition = 'normal';
@@ -95,54 +95,38 @@ class ScoreCard extends Component {
     }
 
     this.setState(prevState => ({
-      players: prevState.players.map(pl => pl.id === this.state.curplayer ? player : pl)
+      players: prevState.players.map(pl => pl.id === this.props.curplayer ? player : pl)
     }), (() => this.next()));
   }
 
-  next() {
-    const player = Object.assign({}, this.state.players[this.state.curplayer]);
-    if (player.score === '') {
-      player.score = 0;
-      this.setState(prevState => ({
-        players: prevState.players.map(pl => pl.id === this.state.curplayer ? player : pl)
-      }));
-    }
-    if (this.state.curplayer + 1 < this.state.players.length) {
-      this.setState(prevState => ({
-        curplayer: prevState.curplayer + 1
-      }));
+  nextPlayer() {
+    if (this.props.curplayer + 1 >= this.props.players.length) {
+      this.props.gotoView('summary', false);
     } else {
-      // Go to next page
-      this.props.goto({destination: 'summary', header: false});
+      this.props.nextPlayer();
+      this.focus();
     }
-    this.focus();
   }
 
-  last() {
-    if (this.state.curplayer > 0) {
-      this.setState(prevState => ({
-        curplayer: prevState.curplayer - 1
-      }));
+  prevPlayer() {
+    if (this.props.curplayer < 1) {
+      this.props.gotoView('main');
+    } else {
+      this.props.prevPlayer();
+      this.focus();
     }
-    this.focus();
   }
 
   onChange(e) {
-    var str = e.target.value;
-    const player = Object.assign({}, this.state.players[this.state.curplayer]);
+    if (e.target.value !== '') {
+      var points = parseInt(e.target.value, 10);
+      this.props.setPoints(this.props.curplayer, points);
 
-    if (str === '') {
-      player.score = 0;
+      if (e.target.value > 9) {
+        this.nextPlayer();
+      }
     } else {
-      player.score = parseInt(str, 10);
-    }
-
-    this.setState(prevState => ({
-      players: prevState.players.map(pl => pl.id === this.state.curplayer ? player : pl)
-    }));
-
-    if (player.score > 9) {
-      this.next();
+      this.props.setPoints(this.props.curplayer, e.target.value);
     }
   }
 
@@ -154,20 +138,20 @@ class ScoreCard extends Component {
 
   render() {
     return (
-      <div className="ScoreCard" style={{borderColor: this.state.players[this.state.curplayer].color}}>
-        <div className="Header" style={{backgroundColor: this.state.players[this.state.curplayer].color}}>
-          <div className="Name">{this.state.players[this.state.curplayer].name}</div>
+      <div className="ScoreCard" style={{borderColor: this.props.players[this.props.curplayer].color}}>
+        <div className="Header" style={{backgroundColor: this.props.players[this.props.curplayer].color}}>
+          <div className="Name">{this.props.players[this.props.curplayer].name.toUpperCase()}</div>
         </div>
         <div className="Body">
           <form onSubmit={this.onSubmit}>
-            <input value={this.state.players[this.state.curplayer].score} onChange={this.onChange} ref={(input) => { this.textInput = input; }} style={{color: this.state.players[this.state.curplayer].color}} className="Score" min="0" max="50" size="3" maxLength="2" pattern="\d*" placeholder="+0" autoFocus={true}/>
+            <input value={this.props.rounds[this.props.curplayer].points} onChange={this.onChange} ref={(input) => { this.textInput = input; }} style={{color: this.props.players[this.props.curplayer].color}} className="Score" min="0" max="50" size="3" maxLength="2" pattern="\d*" placeholder="+0" autoFocus={true}/>
           </form>
           <div className="Buttons">
-            <Backward onClick={() => this.last()}/>
-            <Loss condition={this.state.players[this.state.curplayer].condition} onClick={() => this.loss()}/>
-            <Janif condition={this.state.players[this.state.curplayer].condition} onClick={() => this.janif()}/>
-            <Win condition={this.state.players[this.state.curplayer].condition} onClick={() => this.win()}/>
-            <Forward onClick={() => this.next()}/>
+            <Backward onClick={() => this.prevPlayer()}/>
+            <Loss condition={this.props.rounds[this.props.curplayer].condition} onClick={() => this.props.onLoss(this.props.curplayer)}/>
+            <Janif condition={this.props.rounds[this.props.curplayer].condition} onClick={() => this.props.onJanif(this.props.curplayer)}/>
+            <Win condition={this.props.rounds[this.props.curplayer].condition} onClick={() => this.props.onWin(this.props.curplayer)}/>
+            <Forward onClick={() => this.nextPlayer()}/>
           </div>
         </div>
       </div>

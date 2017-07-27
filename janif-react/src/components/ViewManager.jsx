@@ -1,45 +1,45 @@
 import React, { Component } from 'react';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 
-import Scoring from './Views/Scoring.jsx'
 import Summary from './Views/Summary.jsx'
-import Main from './Views/Main.jsx'
 import Header from './Common/Header.jsx';
 import HeadSpace from './Common/HeadSpace.jsx';
 
 import MainView from '../containers/MainView.js'
+import ScoringView from '../containers/ScoringView.js'
 
 import './ViewManager.css';
 
 class ViewManager extends Component {
   constructor(props) {
     super(props);
-    this.goto = this.goto.bind(this);
+    //this.props.gotoView = this.props.gotoView.bind(this);
     this.state = {
       curView: 'main',
       header: true,
     };
   }
-
+  /*
   goto(nextView) {
       this.setState((prevState) => ({
         curView: nextView.destination,
         header: nextView.header
-      }), () => (console.log('Changed view to: ' + this.state.curView)));
+      }), () => (console.log('Changed view to: ' + this.props.curview)));
   }
+  */
 
   render() {
     return (
       <div className="ViewManager">
-        {this.state.header && <Header />}
-        {this.state.header && <HeadSpace />}
+        {this.props.header && <Header />}
+        {this.props.header && <HeadSpace />}
         <CSSTransitionGroup
           transitionName="wipe"
           transitionEnterTimeout={500}
           transitionLeaveTimeout={500}>
-          {(this.state.curView === 'scoring') && <Scoring key="scoring" goto={this.goto} />}
-          {(this.state.curView === 'summary') && <Summary key="summary" goto={this.goto} />}
-          {(this.state.curView === 'main') && <MainView key="main" goto={this.goto} />}
+          {(this.props.curview === 'scoring') && <ScoringView key="scoring" gotoView={this.props.gotoView} />}
+          {(this.props.curview === 'summary') && <Summary key="summary" gotoView={this.props.gotoView} />}
+          {(this.props.curview === 'main') && <MainView key="main" gotoView={this.props.gotoView} />}
         </CSSTransitionGroup>
       </div>
     );

@@ -6,7 +6,6 @@ import './Main.css'
 class Main extends Component {
   constructor(props) {
     super(props);
-    console.log(props);
   }
 
   render() {
@@ -26,7 +25,7 @@ class Main extends Component {
           </ol>
         </div>
         <div className="RightColumn">
-          <Next label='CONTINUE' onClick={() => this.props.goto({destination: 'scoring', header: false})}/>
+          <Next label='CONTINUE' onClick={() => this.props.gotoView("scoring", false)}/>
           <ol className="PlayerList">
             {this.props.players.sort((a, b) => {
               return a.score - b.score
