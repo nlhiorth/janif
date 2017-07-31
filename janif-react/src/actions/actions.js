@@ -11,6 +11,8 @@ export const SET_POINTS = 'SET_POINTS';
 export const NEXT_PLAYER = 'NEXT_PLAYER';
 export const PREV_PLAYER = 'PREV_PLAYER';
 export const GOTO_VIEW = 'GOTO_VIEW';
+export const CLEAR_SCORING = 'CLEAR_SCORING';
+export const SET_NAME = 'SET_NAME';
 
 /* Action creators */
 
@@ -89,5 +91,18 @@ export function gotoView(view, header = true) {
     type: GOTO_VIEW,
     view,
     header
+  }
+}
+
+export function clearScoring() {
+  return {
+    type: CLEAR_SCORING
+  }
+}
+
+export function setName(input) {
+  return {
+    type: SET_NAME,
+    input
   }
 }

@@ -7,10 +7,6 @@ class Setup extends Component {
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.focus = this.focus.bind(this);
-    this.state = {
-      text: '',
-      playernames: [],
-    }
   }
 
   focus() {
@@ -18,23 +14,16 @@ class Setup extends Component {
   }
 
   onChange(e) {
-    this.setState({text : e.target.value});
+    this.props.setName(e.target.value);
   }
 
   onSubmit(e) {
     e.preventDefault();
-    var newPlayer = this.state.text;
     this.focus();
-    if (newPlayer !== '') {
-      this.setState((prevState) => ({
-        playernames: prevState.playernames.concat(newPlayer),
-        text: '',
-      }));
-      console.log('Added new player ' + newPlayer);
-    } else {
-      console.log("Didn't add empty player");
+    if (this.props.input !== '') {
+      this.props.addPlayer(this.props.input);
+      this.props.setName('');
     }
-
   }
 
   render() {
@@ -42,19 +31,19 @@ class Setup extends Component {
       <div className="setupscreen">
         <div className="setupplayerlist">
           <ul>
-            {this.state.playernames.map(player => (
-              <li key={player}>{player}<span className="greenfont">{' ✔︎'}</span></li>
+            {this.props.players.map(player => (
+              <li key={player.id}><div style={{color: '#FFF', backgroundColor: player.color}}>{player.name.toUpperCase()}</div></li>
             ))}
           </ul>
         </div>
 
         <form className="setupform" onSubmit={this.onSubmit}>
           <div>
-            <input value={this.state.text} ref={(input) => { this.textInput = input; }} className="namefield" onChange={this.onChange} placeholder="New player" autoFocus/>
+            <input value={this.props.input} ref={(input) => { this.textInput = input; }} className="namefield" onChange={this.onChange} placeholder="New player" autoFocus/>
           </div>
           <div className="buttonchoices">
             <button className="blue newbutton">{'Add'}</button>
-            <Ready createPlayers={this.props.createPlayers()} playernames={this.state.playernames} hidden={(this.state.playernames.length > 1)}/>
+            <Ready onClick={() => this.props.gotoView("main")} hidden={(this.props.players.length > 1)}/>
           </div>
         </form>
       </div>

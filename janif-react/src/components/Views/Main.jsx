@@ -4,16 +4,12 @@ import Next from '../Buttons/Next.jsx';
 import './Main.css'
 
 class Main extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <div className="Main">
         <div className="LeftColumn">
           <ol className="PlayerList">
-            {this.props.players.sort((a, b) => {
+            {this.props.players.slice().sort((a, b) => {
               return a.score - b.score
             }).filter((e, i) => {
               return i % 2 === 0;
@@ -27,7 +23,7 @@ class Main extends Component {
         <div className="RightColumn">
           <Next label='CONTINUE' onClick={() => this.props.gotoView("scoring", false)}/>
           <ol className="PlayerList">
-            {this.props.players.sort((a, b) => {
+            {this.props.players.slice().sort((a, b) => {
               return a.score - b.score
             }).filter((e, i) => {
               return i % 2 === 1;

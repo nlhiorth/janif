@@ -10,21 +10,25 @@ import './index.css';
 
 let store = createStore(janifApp);
 console.log(store.getState());
-
+/*
 let unsubscribe = store.subscribe(() =>
   console.log(store.getState())
 )
-
+*/
+/*
 store.dispatch(addPlayer("Nils"));
 store.dispatch(addPlayer("Ingvild"));
 store.dispatch(addPlayer("Christoffer"));
 store.dispatch(addPlayer("Martine"));
+*/
+/*
 store.dispatch(addScore(0, 23));
 store.dispatch(addScore(1, 13));
 store.dispatch(addScore(2, 36));
 store.dispatch(addScore(3, 54));
 store.dispatch(useBanana(1));
 store.dispatch(useBean(2));
+*/
 /*
 store.dispatch(addScore(3, 15));
 store.dispatch(addScore(0, 27));
@@ -47,9 +51,11 @@ store.dispatch(nextPlayer());
 store.dispatch(nextPlayer()); // curplayer = 3
 store.dispatch(nextPlayer()); // curplayer = 3
 */
-store.dispatch(gotoView("summary", true));
+/*store.dispatch(gotoView("summary", true));
 store.dispatch(gotoView("scoring", false));
 store.dispatch(gotoView("main"));
+store.dispatch(gotoView("setup"));
+*/
 
 
 /*unsubscribe();*/
