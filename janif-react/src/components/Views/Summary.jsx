@@ -5,41 +5,12 @@ import Next from '../Buttons/Next.jsx';
 import Last from '../Buttons/Last.jsx';
 
 class Summary extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      changes: [
-        {
-          id: 0,
-          name: 'NILS',
-          score: 26,
-          condition: 'loss',
-          color: 'hsl(344, 33%, 56%)',
-        },
-        {
-          id: 1,
-          name: 'CHRIS',
-          score: 0,
-          condition: 'janif',
-          color: 'hsl(58, 33%, 56%)',
-        },
-        {
-          id: 2,
-          name: 'PINGIZ',
-          score: 13,
-          condition: 'normal',
-          color: 'hsl(205, 33%, 56%)',
-        },
-        {
-          id: 3,
-          name: 'PEPPERONI',
-          score: -10,
-          condition: 'win',
-          color: 'hsl(157, 33%, 56%)',
-        }
-      ],
-    }
+  mergePoints() {
+    this.props.rounds.map(player => (
+      this.props.addScore(player.id, player.points)
+    ));
+    this.props.gotoView("main");
+    this.props.clearScoring();
   }
 
   render() {
@@ -47,18 +18,18 @@ class Summary extends Component {
       <div className="Summary">
         <div>
           <ol className="SummaryList">
-            {this.state.changes.sort((a, b) => {
-              return a.score - b.score
+            {this.props.rounds.slice().sort((a, b) => {
+              return a.points - b.points
             }).map(player => (
               <li key={player.id}>
-                <SummaryCard name={player.name} score={player.score} color={player.color}/>
+                <SummaryCard name={this.props.players[player.id].name} score={(player.points !== '') ? player.points : 0} color={this.props.players[player.id].color}/>
               </li>
             ))}
           </ol>
         </div>
         <div className="SummaryButtons">
           <Last label='GO BACK'/>
-          <Next label='CONTINUE' onClick={() => this.props.goto({destination: 'main', header: true})}/>
+          <Next label='CONTINUE' onClick={() => this.mergePoints()}/>
         </div>
       </div>
     );

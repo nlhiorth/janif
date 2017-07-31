@@ -5,9 +5,9 @@ class SummaryCard extends Component {
   render() {
     return (
       <div className="SummaryCard" style={{backgroundColor: this.props.color, borderColor: this.props.color}}>
-        <div className="Name">{this.props.name}</div>
+        <div className="Name">{this.props.name.toUpperCase()}</div>
         <div className="Background">
-          <div className="Score" style={{color: this.props.color}}>{(this.props.score >= 0) ? '+'+this.props.score : this.props.score}</div>
+          <div className="Score" style={{color: this.props.color}}>{(this.props.score >= 1) ? '+'+this.props.score : this.props.score}</div>
         </div>
       </div>
     );

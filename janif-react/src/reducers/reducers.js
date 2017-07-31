@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { ADD_PLAYER, ADD_SCORE, USE_BANANA, USE_BEAN, ROUND_LOSS, ROUND_WIN, ROUND_JANIF, SET_POINTS, NEXT_PLAYER, PREV_PLAYER, GOTO_VIEW } from '../actions/actions.js';
+import { ADD_PLAYER, ADD_SCORE, USE_BANANA, USE_BEAN, ROUND_LOSS, ROUND_WIN, ROUND_JANIF, SET_POINTS, NEXT_PLAYER, PREV_PLAYER, GOTO_VIEW, CLEAR_SCORING, SET_NAME } from '../actions/actions.js';
 
 function players(state = [], action) {
   switch (action.type) {
@@ -35,7 +35,7 @@ function player(state = {}, action) {
       }
 
       return Object.assign({}, state, {
-        score: ruleModify(state.score + action.points),
+        score: (action.points !== 0 && action.points !== '') ? ruleModify(state.score + action.points) : state.score,
         prev: state.score
       })
 
@@ -66,7 +66,7 @@ function player(state = {}, action) {
   }
 }
 
-function scoring(state = {rounds: [], curplayer: 0}, action) {
+function scoring(state = {rounds: [], index: 0}, action) {
   switch(action.type) {
     case ADD_PLAYER: case ROUND_LOSS: case ROUND_WIN: case ROUND_JANIF: case SET_POINTS:
       return Object.assign({}, state, {
@@ -74,23 +74,28 @@ function scoring(state = {rounds: [], curplayer: 0}, action) {
       })
 
     case NEXT_PLAYER:
-      if ((state.curplayer + 1) >= state.rounds.length) {
+      if ((state.index + 1) >= state.rounds.length) {
         return state;
       } else {
         return Object.assign({}, state, {
-          curplayer: state.curplayer + 1
+          index: state.index + 1
         })
       }
 
     case PREV_PLAYER:
-      if ((state.curplayer - 1) < 0) {
+      if ((state.index - 1) < 0) {
         return state;
       } else {
         return Object.assign({}, state, {
-          curplayer: state.curplayer - 1
+          index: state.index - 1
         })
       }
 
+    case CLEAR_SCORING:
+      return Object.assign({}, state, {
+        index: 0,
+        rounds: rounds(state.rounds, action)
+      })
 
     default:
       return state;
@@ -108,6 +113,11 @@ function rounds(state = [], action) {
           condition: "normal"
         }
       ]
+
+    case CLEAR_SCORING:
+      return state.map(pl => (
+        round(pl, action)
+      ))
 
     case ROUND_LOSS: case ROUND_WIN: case ROUND_JANIF: case SET_POINTS:
       return state.map(pl => (
@@ -137,7 +147,7 @@ function round(state = {}, action) {
       }
 
       return Object.assign({}, state, {
-        points: state.points - 10,
+        points: -10,
         condition: "win"
       })
 
@@ -160,17 +170,28 @@ function round(state = {}, action) {
         points: action.points
       })
 
+    case CLEAR_SCORING:
+      return Object.assign({}, state, {
+        points: '',
+        condition: 'normal'
+      })
+
     default:
       return state;
   }
 }
 
-function game(state = {curview: "main", header: true}, action) {
+function game(state = {curview: "setup", header: true, input: ''}, action) {
   switch (action.type) {
     case GOTO_VIEW:
       return Object.assign({}, state, {
         curview: action.view,
         header: action.header
+      })
+
+    case SET_NAME:
+      return Object.assign({}, state, {
+        input: action.input
       })
 
     default:
