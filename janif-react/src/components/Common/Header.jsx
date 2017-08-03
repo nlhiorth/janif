@@ -8,7 +8,7 @@ class Header extends Component {
       <div className="Header">
         <div className="help">{'❮'}</div>
         <div className="title">{'Janif'}</div>
-        <div className="close" onClick={this.props.onClose}>{'X'}</div>
+        <div className="close" onClick={this.props.resetState}>{'X'}</div>
       </div>
     );
   }

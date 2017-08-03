@@ -13,6 +13,7 @@ export const PREV_PLAYER = 'PREV_PLAYER';
 export const GOTO_VIEW = 'GOTO_VIEW';
 export const CLEAR_SCORING = 'CLEAR_SCORING';
 export const SET_NAME = 'SET_NAME';
+export const RESET_STATE = 'RESET_STATE';
 
 /* Action creators */
 
@@ -104,5 +105,11 @@ export function setName(input) {
   return {
     type: SET_NAME,
     input
+  }
+}
+
+export function resetState() {
+  return {
+    type: RESET_STATE
   }
 }

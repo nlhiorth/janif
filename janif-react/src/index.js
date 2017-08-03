@@ -4,12 +4,17 @@ import App from './App';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import janifApp from './reducers/reducers';
+import { loadState, saveState } from './localStorage';
 import { addPlayer, addScore, useBanana, useBean, roundLoss, roundWin, roundJanif, setPoints, nextPlayer, prevPlayer, gotoView } from './actions/actions';
-
 import './index.css';
 
-let store = createStore(janifApp);
+const localstate = loadState();
+let store = createStore(janifApp, localstate);
 console.log(store.getState());
+
+store.subscribe(() => {
+  saveState(store.getState());
+});
 /*
 let unsubscribe = store.subscribe(() =>
   console.log(store.getState())

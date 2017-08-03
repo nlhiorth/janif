@@ -15,7 +15,7 @@ class ViewManager extends Component {
   render() {
     return (
       <div className="ViewManager">
-        {this.props.header && <Header />}
+        {this.props.header && <Header resetState={this.props.resetState}/>}
         {this.props.header && <HeadSpace />}
         <CSSTransitionGroup
           transitionName="wipe"
