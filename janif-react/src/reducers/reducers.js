@@ -136,7 +136,12 @@ function round(state = {}, action) {
         return state;
       }
 
-      return Object.assign({}, state, {
+      if (state.condition === 'loss') {
+        return Object.assign({}, state, {
+          points: state.points - 25,
+          condition: "normal"
+        })
+      } else return Object.assign({}, state, {
         points: state.points + 25,
         condition: "loss"
       })
@@ -146,7 +151,12 @@ function round(state = {}, action) {
         return state;
       }
 
-      return Object.assign({}, state, {
+      if (state.condition === 'win') {
+        return Object.assign({}, state, {
+          points: 0,
+          condition: "normal"
+        })
+      } else return Object.assign({}, state, {
         points: -10,
         condition: "win"
       })
@@ -156,7 +166,12 @@ function round(state = {}, action) {
         return state;
       }
 
-      return Object.assign({}, state, {
+      if (state.condition === 'janif') {
+        return Object.assign({}, state, {
+          points: 0,
+          condition: "normal"
+        })
+      } else return Object.assign({}, state, {
         points: 0,
         condition: "janif"
       })
