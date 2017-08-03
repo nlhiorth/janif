@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import ViewManager from '../components/ViewManager';
-import { gotoView } from '../actions/actions';
+import { gotoView, resetState } from '../actions/actions';
 
 function mapStateToProps(state) {
   return {
@@ -13,6 +13,9 @@ function mapDispatchToProps(dispatch) {
   return {
     gotoView: (view, header) => {
       dispatch(gotoView(view, header))
+    },
+    resetState: () => {
+      dispatch(resetState())
     }
   }
 }

@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { ADD_PLAYER, ADD_SCORE, USE_BANANA, USE_BEAN, ROUND_LOSS, ROUND_WIN, ROUND_JANIF, SET_POINTS, NEXT_PLAYER, PREV_PLAYER, GOTO_VIEW, CLEAR_SCORING, SET_NAME } from '../actions/actions.js';
+import { ADD_PLAYER, ADD_SCORE, USE_BANANA, USE_BEAN, ROUND_LOSS, ROUND_WIN, ROUND_JANIF, SET_POINTS, NEXT_PLAYER, PREV_PLAYER, GOTO_VIEW, CLEAR_SCORING, SET_NAME, RESET_STATE } from '../actions/actions.js';
 
 function players(state = [], action) {
   switch (action.type) {
@@ -23,6 +23,9 @@ function players(state = [], action) {
       return state.map(pl => (
         player(pl, action)
       ))
+
+    case RESET_STATE:
+      return [];
 
     default:
       return state;
@@ -115,6 +118,12 @@ function scoring(state = {rounds: [], index: 0}, action) {
         index: 0,
         rounds: rounds(state.rounds, action)
       })
+
+    case RESET_STATE:
+      return {
+        index: 0,
+        rounds: []
+      }
 
     default:
       return state;
@@ -227,6 +236,13 @@ function game(state = {curview: "setup", header: true, input: ''}, action) {
       return Object.assign({}, state, {
         input: action.input
       })
+
+    case RESET_STATE:
+      return {
+        curview: "setup",
+        header: true,
+        input: ''
+      };
 
     default:
       return state;
