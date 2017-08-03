@@ -1,5 +1,13 @@
 export function loadState() {
-  return JSON.parse(localStorage.getItem('state'))
+  try {
+    const localstate = localStorage.getItem('state');
+    if (localstate === null) {
+      return undefined;
+    }
+    return JSON.parse(localstate);
+  } catch (err) {
+    return undefined;
+  }
 }
 
 export function saveState(state) {
