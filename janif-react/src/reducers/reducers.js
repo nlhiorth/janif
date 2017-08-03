@@ -13,6 +13,8 @@ function players(state = [], action) {
           prev: 0,
           banana: true,
           bean: true,
+          bananalock: false,
+          beanlock: false,
           color: 'hsl(' + (action.name.split('').reduce((acc, curval) => acc * (curval.codePointAt(0) - 64), 1) % 359) + ', 33%, 56%)'
         }
       ]
@@ -36,7 +38,9 @@ function player(state = {}, action) {
 
       return Object.assign({}, state, {
         score: (action.points !== 0 && action.points !== '') ? ruleModify(state.score + action.points) : state.score,
-        prev: state.score
+        prev: state.score,
+        bananalock: (!state.banana),
+        beanlock: (!state.bean),
       })
 
     case USE_BANANA:
@@ -44,10 +48,14 @@ function player(state = {}, action) {
         return state;
       }
 
+      if (!state.banana && state.bananalock) {
+        return state;
+      }
+
       return Object.assign({}, state, {
         score: state.prev,
-        prev: 0,
-        banana: false
+        prev: state.score,
+        banana: !state.banana
       })
 
     case USE_BEAN:
@@ -55,6 +63,17 @@ function player(state = {}, action) {
         return state;
       }
 
+      if (!state.bean && state.beanlock) {
+        return state;
+      }
+
+      if (!state.bean) {
+        return Object.assign({}, state, {
+          score: state.prev,
+          prev: state.score,
+          bean: true
+        })
+      }
       return Object.assign({}, state, {
         score: ruleModify(parseInt(state.score.toString().split('').reverse().join(''), 10)),
         prev: state.score,
