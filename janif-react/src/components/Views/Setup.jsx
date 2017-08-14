@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Ready from '../Buttons/Ready.jsx';
+import './Setup.css';
 
 class Setup extends Component {
   constructor(props) {

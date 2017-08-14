@@ -361,29 +361,6 @@ form {
   line-height: 2;
 }
 
-.setupplayerlist {
-  margin-top: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 2rem;
-  flex-wrap: nowrap;
-  padding-left: 0;
-  padding-bottom: 1rem;
-}
-
-.setupplayerlist li{
-  text-align: center;
-  list-style: none;
-}
-
-.setupplayerlist ul{
-  padding: 0;
-  margin-bottom: 0;
-}
-
 .playername {
 
 }
