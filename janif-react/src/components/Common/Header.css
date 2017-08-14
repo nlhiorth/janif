@@ -4,7 +4,7 @@
   background-color: #5fba7d;
   box-shadow: 0 0 1.5rem #888888;
   margin: 0;
-  padding: 3rem 1rem 1rem 0rem;
+  padding: 2rem 1rem 0rem 0rem;
   position: fixed;
   top: 0px;
   left: 0px;
@@ -14,6 +14,5 @@
   align-items: stretch;
   color: #FFF;
   font-size: 2rem;
-  line-height: 1rem;
   text-align: center;
 }

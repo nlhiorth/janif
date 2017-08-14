@@ -17,6 +17,7 @@
 }
 
 .setupplayerlist li div {
+  font-weight: 300;
   padding-left: 1rem;
   padding-right: 1rem;
 }
