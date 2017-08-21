@@ -4,12 +4,13 @@
   line-height: 2rem;
   height: auto;
   padding: 1rem;
-  font-weight: 500;
+  font-weight: 300;
   text-align: center;
   border-radius: 0.3rem;
-  box-shadow: 0 0 1.5rem #888888;
+  background-color: #8f8f8f;
+  /*box-shadow: 0 0 1.5rem #888888;*/
 }
 
 .Green {
-  background-color: #5fba7d;
+  /*background-color: #5fba7d;*/
 }

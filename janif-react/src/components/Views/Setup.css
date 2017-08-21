@@ -26,3 +26,11 @@
   padding: 0;
   margin-bottom: 0;
 }
+
+.buttonchoices {
+  display: flex;
+}
+
+.buttonchoices > div {
+  width: 45%;
+}

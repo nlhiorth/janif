@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Ready from '../Buttons/Ready.jsx';
 import './Setup.css';
+import '../Buttons/Buttons.css'
 
 class Setup extends Component {
   constructor(props) {
@@ -43,8 +44,8 @@ class Setup extends Component {
             <input value={this.props.input} ref={(input) => { this.textInput = input; }} className="namefield" onChange={this.onChange} placeholder="New player" autoFocus/>
           </div>
           <div className="buttonchoices">
-            <button className="blue newbutton">{'Add'}</button>
-            <Ready onClick={() => this.props.gotoView("main")} hidden={(this.props.players.length > 1)}/>
+            <div><button className="blue newbutton">{'ADD'}</button></div>
+            <div><Ready onClick={() => this.props.gotoView("main")} hidden={(this.props.players.length > 1)}/></div>
           </div>
         </form>
       </div>
