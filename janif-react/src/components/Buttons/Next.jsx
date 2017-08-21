@@ -5,7 +5,7 @@ class Next extends Component {
 
   render() {
     return (
-      <div className="Standard Green" onClick={() => this.props.onClick()}>{this.props.label}</div>
+      <div className="Standard" onClick={() => this.props.onClick()}>{this.props.label}</div>
     );
   }
 }

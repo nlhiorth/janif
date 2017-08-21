@@ -15,7 +15,8 @@ button {
 }
 
 body {
-  background-color: #7CB5AD;
+  /*background-color: #7CB5AD;*/
+  background-color: #FFF;
   /* font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; */
   font-family: 'Nunito', sans-serif;
   font-weight: 300;

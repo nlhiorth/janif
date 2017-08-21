@@ -1,7 +1,8 @@
 .ViewManager>.Header {
   width: 100%;
   height: auto;
-  background-color: #5fba7d;
+  /*background-color: #5fba7d; 	hsl(172, 28%, 60%)*/
+  background-color: #6ab4aa; /* hsl(172, 33%, 56%) */
   box-shadow: 0 0 1.5rem #888888;
   margin: 0;
   padding: 2rem 1rem 0rem 0rem;
