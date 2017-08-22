@@ -44,7 +44,7 @@ class Setup extends Component {
             <input value={this.props.input} ref={(input) => { this.textInput = input; }} className="namefield" onChange={this.onChange} placeholder="New player" autoFocus/>
           </div>
           <div className="buttonchoices">
-            <div><button className="blue newbutton">{'ADD'}</button></div>
+            <div><button className="Standard Stripped">{'ADD'}</button></div>
             <div><Ready onClick={() => this.props.gotoView("main")} hidden={(this.props.players.length > 1)}/></div>
           </div>
         </form>

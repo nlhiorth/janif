@@ -14,3 +14,12 @@
 .Green {
   /*background-color: #5fba7d;*/
 }
+
+.Stripped {
+  -webkit-appearance: none;
+  outline: 0;
+  outline-style: none;
+  outline-width: 0;
+  border-style: none;
+  text-decoration: none;
+}
