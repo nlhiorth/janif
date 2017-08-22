@@ -34,3 +34,7 @@
 .buttonchoices > div {
   width: 45%;
 }
+
+input {
+  text-transform: uppercase;
+}
