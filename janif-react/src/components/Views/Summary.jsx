@@ -10,7 +10,7 @@ class Summary extends Component {
     this.props.rounds.map(player => (
       this.props.addScore(player.id, player.points)
     ));
-    this.props.gotoView("main");
+    this.props.next();
     this.props.clearScoring();
   }
 
@@ -30,7 +30,7 @@ class Summary extends Component {
         </div>
         <div className="PaddedRow">
           <div className="buttonchoices">
-            <Last label='GO BACK'/>
+            <Last label='GO BACK' onClick={() => this.props.back()}/>
             <Next label='CONTINUE' onClick={() => this.mergePoints()}/>
           </div>
         </div>
