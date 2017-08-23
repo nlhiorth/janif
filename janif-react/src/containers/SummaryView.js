@@ -15,8 +15,11 @@ function mapDispatchToProps(dispatch) {
     addScore: (id, points) => {
       dispatch(addScore(id, points))
     },
-    gotoView: (view) => {
-      dispatch(gotoView(view))
+    next: () => {
+      dispatch(gotoView('main'))
+    },
+    back: () => {
+      dispatch(gotoView('scoring', false))
     },
     clearScoring: () => {
       dispatch(clearScoring())
