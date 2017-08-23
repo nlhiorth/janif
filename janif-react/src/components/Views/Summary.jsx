@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Summary.css';
+import './Setup.css';
 import SummaryCard from '../Common/SummaryCard.jsx';
 import Next from '../Buttons/Next.jsx';
 import Last from '../Buttons/Last.jsx';
@@ -27,9 +28,11 @@ class Summary extends Component {
             ))}
           </ol>
         </div>
-        <div className="SummaryButtons">
-          <Last label='GO BACK'/>
-          <Next label='CONTINUE' onClick={() => this.mergePoints()}/>
+        <div className="PaddedRow">
+          <div className="buttonchoices">
+            <Last label='GO BACK'/>
+            <Next label='CONTINUE' onClick={() => this.mergePoints()}/>
+          </div>
         </div>
       </div>
     );

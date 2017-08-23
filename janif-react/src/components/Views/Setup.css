@@ -28,11 +28,19 @@
 }
 
 .buttonchoices {
+  width: 100%;
   display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
 }
 
 .buttonchoices > div {
   width: 45%;
+}
+
+.PaddedRow {
+  padding: 1rem;
+  width: 100%;
 }
 
 input {

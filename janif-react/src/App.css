@@ -427,11 +427,6 @@ form {
   color: #444;
 }
 
-.buttonchoices {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-}
 
 .popup {
   width: 12rem;
