@@ -12,6 +12,7 @@ class ScoreCard extends Component {
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.focus = this.focus.bind(this);
+    setInterval(() => this.focus(), 750)
   }
 
   focus() {
@@ -111,7 +112,7 @@ class ScoreCard extends Component {
         </div>
         <div className="Body">
           <form onSubmit={this.onSubmit}>
-            <input value={this.props.curround.points} onChange={this.onChange} ref={(input) => { this.textInput = input; }} style={{color: this.props.curplayer.color}} className="Score" min="0" max="50" size="3" maxLength="2" pattern="\d*" placeholder="+0" autoFocus={true}/>
+            <input value={this.props.curround.points} onChange={this.onChange} ref={(input) => { this.textInput = input; }} style={{color: this.props.curplayer.color}} className="Score" min="0" max="50" size="3" maxLength="2" pattern="\d*" placeholder="+0"/>
           </form>
           <div className="Buttons">
             <Backward onClick={() => this.prevPlayer()}/>

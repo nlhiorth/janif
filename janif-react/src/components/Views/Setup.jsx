@@ -9,6 +9,7 @@ class Setup extends Component {
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.focus = this.focus.bind(this);
+    setInterval(() => this.focus(), 750)
   }
 
   focus() {
@@ -41,7 +42,7 @@ class Setup extends Component {
 
         <form className="setupform" onSubmit={this.onSubmit}>
           <div>
-            <input value={this.props.input} ref={(input) => { this.textInput = input; }} className="namefield" onChange={this.onChange} placeholder="New player" autoFocus/>
+            <input value={this.props.input} ref={(input) => { this.textInput = input; }} className="namefield" onChange={this.onChange} placeholder="New player"/>
           </div>
           <div className="buttonchoices">
             <div><button className="Standard Stripped">{'ADD'}</button></div>
