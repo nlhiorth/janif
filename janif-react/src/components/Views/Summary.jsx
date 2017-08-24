@@ -16,7 +16,7 @@ class Summary extends Component {
 
   render() {
     return (
-      <div className="Summary">
+      <div className="Summary" style={this.props.style}>
         <div>
           <ol className="SummaryList">
             {this.props.rounds.slice().sort((a, b) => {

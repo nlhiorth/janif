@@ -31,7 +31,7 @@ class Setup extends Component {
 
   render() {
     return (
-      <div className="setupscreen">
+      <div className="Setup" style={this.props.style}>
         <div className="setupplayerlist">
           <ul>
             {this.props.players.map(player => (

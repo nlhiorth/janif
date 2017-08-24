@@ -6,7 +6,7 @@ import './Main.css'
 class Main extends Component {
   render() {
     return (
-      <div className="Main">
+      <div className="Main" style={this.props.style}>
         <div className="LeftColumn">
           <ol className="PlayerList">
             {this.props.players.slice().sort((a, b) => {
