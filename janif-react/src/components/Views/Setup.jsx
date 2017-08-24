@@ -9,7 +9,7 @@ class Setup extends Component {
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.focus = this.focus.bind(this);
-    setTimeout(() => this.focus(), 750)
+    setTimeout(() => this.focus(), 750);
   }
 
   focus() {

@@ -11,14 +11,14 @@
   transition: 500ms ease;
 }
 
-.wipe-leave {
+.wipe-exit {
   opacity: 1;
   position: absolute;
   z-index: 100;
   transform: translate(0, 0);
 }
 
-.wipe-leave.wipe-leave-active {
+.wipe-leave.wipe-exit-active {
   opacity: 0.01;
   transform: translate(-100vw, 0);
   transition: 500ms ease;
