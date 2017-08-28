@@ -31,24 +31,26 @@ class Setup extends Component {
 
   render() {
     return (
-      <div className="Setup" style={this.props.style}>
-        <div className="setupplayerlist">
-          <ul>
-            {this.props.players.map(player => (
-              <li key={player.id}><div style={{color: '#FFF', backgroundColor: player.color}}>{player.name.toUpperCase()}</div></li>
-            ))}
-          </ul>
-        </div>
+      <div className="Setup">
+        <div className="SetupContainer">
+          <div className="setupplayerlist">
+            <ul>
+              {this.props.players.map(player => (
+                <li key={player.id}><div style={{color: '#FFF', backgroundColor: player.color}}>{player.name.toUpperCase()}</div></li>
+              ))}
+            </ul>
+          </div>
 
-        <form className="setupform" onSubmit={this.onSubmit}>
-          <div>
-            <input value={this.props.input} ref={(input) => { this.textInput = input; }} className="namefield" onChange={this.onChange} placeholder="New player"/>
-          </div>
-          <div className="buttonchoices">
-            <div><button className="Standard Stripped">{'ADD'}</button></div>
-            <div><Ready onClick={() => this.props.gotoView("main")} hidden={(this.props.players.length > 1)}/></div>
-          </div>
-        </form>
+          <form className="setupform" onSubmit={this.onSubmit}>
+            <div>
+              <input value={this.props.input} ref={(input) => { this.textInput = input; }} className="namefield" onChange={this.onChange} placeholder="New player"/>
+            </div>
+            <div className="buttonchoices">
+              <div><button className="Standard Stripped">{'ADD'}</button></div>
+              <div><Ready onClick={() => this.props.gotoView("main")} hidden={(this.props.players.length > 1)}/></div>
+            </div>
+          </form>
+        </div>
       </div>
     );
   }

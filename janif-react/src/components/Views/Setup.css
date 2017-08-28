@@ -1,11 +1,19 @@
 .Setup {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: flex-end;
+}
 
+.SetupContainer {
+  width: 100%;
 }
 
 .setupplayerlist {
-  margin-top: 100%;
+  /*margin-top: 100%;*/
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 0;
   display: flex;
   justify-content: center;
   align-items: center;
