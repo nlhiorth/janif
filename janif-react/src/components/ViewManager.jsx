@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Transition from 'react-motion-ui-pack';
 import { spring } from 'react-motion';
+import './ViewManager.css';
 
 import Header from './Common/Header';
 import HeadSpace from './Common/HeadSpace';
@@ -55,13 +56,31 @@ class ViewManager extends Component {
   render() {
     return (
       <div className="ViewManager">
-        {this.props.header && <Header resetState={this.props.resetState}/>}
+        <Transition
+          component={false}
+          appear={{
+            translateY: -200
+          }}
+          enter={{
+            translateY: spring(0)
+          }}
+          leave={{
+            translateY: -200
+          }}
+        >
+          {this.props.header &&
+            <div key="main">
+              <Header resetState={this.props.resetState}/>
+            </div>
+          }
+        </Transition>
+
         {this.props.header && <HeadSpace />}
         <Transition
           component={false}
           appear={{
             opacity: 0,
-            translateX: 500
+            translateX: 1000
           }}
           enter={{
             opacity: 1,
@@ -69,7 +88,7 @@ class ViewManager extends Component {
           }}
           leave={{
             opacity: 0,
-            translateX: -500
+            translateX: -1000
           }}
         >
           {(this.props.curview === 'main') &&
@@ -82,7 +101,7 @@ class ViewManager extends Component {
           component={false}
           appear={{
             opacity: 0,
-            translateX: 500
+            translateX: 1000
           }}
           enter={{
             opacity: 1,
@@ -90,7 +109,7 @@ class ViewManager extends Component {
           }}
           leave={{
             opacity: 0,
-            translateX: -500
+            translateX: -1000
           }}
         >
           {(this.props.curview === 'scoring') &&
@@ -104,7 +123,7 @@ class ViewManager extends Component {
           component={false}
           appear={{
             opacity: 0,
-            translateX: 500
+            translateX: 1000
           }}
           enter={{
             opacity: 1,
@@ -112,7 +131,7 @@ class ViewManager extends Component {
           }}
           leave={{
             opacity: 0,
-            translateX: -500
+            translateX: -1000
           }}
         >
           {(this.props.curview === 'setup') &&
@@ -126,7 +145,7 @@ class ViewManager extends Component {
           component={false}
           appear={{
             opacity: 0,
-            translateX: 500
+            translateX: 1000
           }}
           enter={{
             opacity: 1,
@@ -134,7 +153,7 @@ class ViewManager extends Component {
           }}
           leave={{
             opacity: 0,
-            translateX: -500
+            translateX: -1000
           }}
         >
           {(this.props.curview === 'summary') &&
