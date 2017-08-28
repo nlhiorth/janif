@@ -43,7 +43,7 @@ class Setup extends Component {
 
           <form className="setupform" onSubmit={this.onSubmit}>
             <div>
-              <input value={this.props.input} ref={(input) => { this.textInput = input; }} className="namefield" onChange={this.onChange} placeholder="New player"/>
+              <input value={this.props.input} ref={(input) => { this.textInput = input; }} className="namefield" onChange={this.onChange} style={{color: 'hsl(' + (this.props.input.split('').reduce((acc, curval) => acc * (curval.codePointAt(0) - 64), 1) % 359) + ', 33%, 56%)'}} placeholder="New player"/>
             </div>
             <div className="buttonchoices">
               <div><button className="Standard Stripped">{'ADD'}</button></div>
