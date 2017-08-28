@@ -23,3 +23,8 @@
   transform: translate(-100vw, 0);
   transition: 500ms ease;
 }
+
+.View {
+  position: absolute;
+  z-index: 1000;
+}
