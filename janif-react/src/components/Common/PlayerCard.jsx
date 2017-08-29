@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Confetti from 'react-dom-confetti';
 
 import './PlayerCard.css';
+import Animation from './Animation';
 import Banana from '../Buttons/Banana.jsx';
 import Bean from '../Buttons/Bean.jsx';
 
@@ -21,9 +22,11 @@ class PlayerCard extends Component {
           <div className="Name">{this.props.player.name.toUpperCase()}</div>
         </div>
         <div className="Body">
-          <div className="Score" style={{color: this.props.player.color}}>
-            {this.props.player.score}
-          </div>
+          <Animation>
+            <div className="Score" style={{color: this.props.player.color}}>
+              {this.props.player.score}
+            </div>
+          </Animation>
           <div className="Buttons">
             <Banana fresh={this.props.player.banana} onClick={() => this.props.onBanana(this.props.player.id)}/>
             <Confetti active={this.props.player.banana} config={config}/>
