@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import './ScoreCard.css';
 import Forward from '../Buttons/Forward.jsx';
 import Backward from '../Buttons/Backward.jsx';

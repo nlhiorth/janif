@@ -6,6 +6,7 @@
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-motion-ui-pack": "0.10.3",
+    "react-dom-confetti": "0.0.8",
     "redux": "^3.7.2",
     "react-redux": "^5.0.5"
   },
