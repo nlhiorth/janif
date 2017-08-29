@@ -27,4 +27,5 @@
 .View {
   position: absolute;
   z-index: 1000;
+  -webkit-backface-visibility: hidden;
 }
