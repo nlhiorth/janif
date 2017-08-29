@@ -69,7 +69,7 @@ class ViewManager extends Component {
           }}
         >
           {this.props.header &&
-            <div key="main">
+            <div key="header">
               <Header resetState={this.props.resetState}/>
             </div>
           }
@@ -93,7 +93,7 @@ class ViewManager extends Component {
         >
           {(this.props.curview === 'main') &&
             <div key="main" className="View">
-              <MainView key="main" gotoView={this.props.gotoView} />
+                <MainView gotoView={this.props.gotoView} />
             </div>
           }
         </Transition>
