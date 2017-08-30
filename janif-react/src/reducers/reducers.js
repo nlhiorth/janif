@@ -224,7 +224,7 @@ function round(state = {}, action) {
   }
 }
 
-function game(state = {curview: "setup", header: true, input: ''}, action) {
+function game(state = {curview: "start", header: false, input: ''}, action) {
   switch (action.type) {
     case GOTO_VIEW:
       return Object.assign({}, state, {
@@ -239,8 +239,8 @@ function game(state = {curview: "setup", header: true, input: ''}, action) {
 
     case RESET_STATE:
       return {
-        curview: "setup",
-        header: true,
+        curview: "start",
+        header: false,
         input: ''
       };
 

@@ -10,6 +10,7 @@ import MainView from '../containers/MainView';
 import ScoringView from '../containers/ScoringView';
 import SummaryView from '../containers/SummaryView';
 import SetupView from '../containers/SetupView';
+import StartView from '../containers/StartView';
 
 /* an
 transitionName="wipe"
@@ -45,6 +46,7 @@ class ViewManager extends Component {
     super(props);
     this.state = {
       views: [
+        'start',
         'setup',
         'main',
         'scoring',
@@ -76,6 +78,27 @@ class ViewManager extends Component {
         </Transition>
 
         {this.props.header && <HeadSpace />}
+        <Transition
+          component={false}
+          appear={{
+            opacity: 0,
+            translateY: -2000
+          }}
+          enter={{
+            opacity: 1,
+            translateY: spring(0)
+          }}
+          leave={{
+            opacity: 0,
+            translateY: -2000
+          }}
+        >
+          {(this.props.curview === 'start') &&
+            <div key="start" className="View">
+                <StartView gotoView={this.props.gotoView} />
+            </div>
+          }
+        </Transition>
         <Transition
           component={false}
           appear={{
