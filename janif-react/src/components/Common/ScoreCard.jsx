@@ -14,6 +14,9 @@ class ScoreCard extends Component {
     this.onSubmit = this.onSubmit.bind(this);
     this.focus = this.focus.bind(this);
     setTimeout(() => this.focus(), 750);
+    this.state = {
+      flip: false,
+    }
   }
 
   focus() {
@@ -72,7 +75,10 @@ class ScoreCard extends Component {
     if (this.props.index + 1 >= this.props.players.length) {
       this.props.gotoView('summary', false);
     } else {
-      this.props.nextPlayer();
+      this.setState({
+        flip: true
+      });
+      setTimeout(() => {this.props.nextPlayer(); this.setState({flip: false})}, 250);
       this.focus();
     }
   }
@@ -81,7 +87,10 @@ class ScoreCard extends Component {
     if (this.props.index < 1) {
       this.props.gotoView('main');
     } else {
-      this.props.prevPlayer();
+      this.setState({
+        flip: true
+      });
+      setTimeout(() => {this.props.prevPlayer(); this.setState({flip: false})}, 250);
       this.focus();
     }
   }
@@ -107,20 +116,22 @@ class ScoreCard extends Component {
 
   render() {
     return (
-      <div className="ScoreCard" style={{borderColor: this.props.curplayer.color}}>
-        <div className="Header" style={{backgroundColor: this.props.curplayer.color}}>
-          <div className="Name">{this.props.curplayer.name.toUpperCase()}</div>
-        </div>
-        <div className="Body">
-          <form onSubmit={this.onSubmit}>
-            <input value={this.props.curround.points} onChange={this.onChange} ref={(input) => { this.textInput = input; }} style={{color: this.props.curplayer.color}} className="Score" min="0" max="50" size="3" maxLength="2" pattern="\d*" placeholder="+0"/>
-          </form>
-          <div className="Buttons">
-            <Backward onClick={() => this.prevPlayer()}/>
-            <Loss condition={this.props.curround.condition} onClick={() => this.props.onLoss(this.props.curplayer.id)}/>
-            <Janif condition={this.props.curround.condition} onClick={() => this.props.onJanif(this.props.curplayer.id)}/>
-            <Win condition={this.props.curround.condition} onClick={() => this.props.onWin(this.props.curplayer.id)}/>
-            <Forward onClick={() => this.nextPlayer()}/>
+      <div className={this.state.flip ? 'CardFlip' : 'CardFlop'}>
+        <div className="ScoreCard" style={{borderColor: this.props.curplayer.color}}>
+          <div className="Header" style={{backgroundColor: this.props.curplayer.color}}>
+            <div className="Name">{this.props.curplayer.name.toUpperCase()}</div>
+          </div>
+          <div className="Body">
+            <form onSubmit={this.onSubmit}>
+              <input value={this.props.curround.points} onChange={this.onChange} ref={(input) => { this.textInput = input; }} style={{color: this.props.curplayer.color}} className="Score" min="0" max="50" size="3" maxLength="2" pattern="\d*" placeholder="+0"/>
+            </form>
+            <div className="Buttons">
+              <Backward onClick={() => this.prevPlayer()}/>
+              <Loss condition={this.props.curround.condition} onClick={() => this.props.onLoss(this.props.curplayer.id)}/>
+              <Janif condition={this.props.curround.condition} onClick={() => this.props.onJanif(this.props.curplayer.id)}/>
+              <Win condition={this.props.curround.condition} onClick={() => this.props.onWin(this.props.curplayer.id)}/>
+              <Forward onClick={() => this.nextPlayer()}/>
+            </div>
           </div>
         </div>
       </div>
