@@ -1,0 +1,32 @@
+.Start {
+  width: 100vw;
+  height: 100vh;
+  background-color: #6ab4aa;
+}
+
+.StartLogo {
+  color: #FFF;
+  margin: auto;
+  display: block;
+  width: auto;
+  text-align: center;
+  font-size: 7rem;
+  margin-top: auto;
+  margin-bottom: 6rem;
+}
+
+.StartButton {
+  background-color: #FFF;
+  color: #6ab4aa;
+  font-size: 3rem;
+  margin-bottom: 2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  border-radius: 0.2rem;
+  margin: auto;
+  display: block;
+  width: auto;
+  text-align: center;
+}
