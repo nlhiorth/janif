@@ -1,0 +1,14 @@
+.Banana, .UsedBanana{
+  background-repeat: no-repeat;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+}
+
+.Banana {
+  background-image: url(./banana.svg);
+}
+
+.UsedBanana {
+  background-image: url(./used-banana.svg);
+}

@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import bean from '../../../img/bean.svg';
-import used_bean from '../../../img/used-bean.svg';
+import './Bean.css'
 
 class Bean extends Component {
   render() {
     return (
-      <img className="square button" src={this.props.fresh ? bean : used_bean} onClick={() => this.props.onClick()} alt="Magic Bean"></img>
+      <div className={this.props.fresh ? 'Bean' : 'UsedBean'} onClick={() => this.props.onClick()}></div>
     );
   }
 }

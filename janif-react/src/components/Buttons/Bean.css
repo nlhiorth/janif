@@ -1,0 +1,14 @@
+.Bean, .UsedBean{
+  background-repeat: no-repeat;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+}
+
+.Bean {
+  background-image: url(./bean.svg);
+}
+
+.UsedBean {
+  background-image: url(./used-bean.svg);
+}
