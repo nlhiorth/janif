@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import banana from '../../../img/banana.svg';
-import used_banana from '../../../img/used-banana.svg';
+import './Banana.css';
 
 class Banana extends Component {
   render() {
     return (
-      <img className="square button" src={this.props.fresh ? banana : used_banana} onClick={() => this.props.onClick()} alt="Banana"></img>
+        <div className={this.props.fresh ? 'Banana' : 'UsedBanana'} onClick={() => this.props.onClick()}></div>
     );
   }
 }
