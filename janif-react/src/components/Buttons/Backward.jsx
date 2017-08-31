@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import backward from '../../../img/backward.svg';
+import './Navigation.css';
 
 class Backward extends Component {
   render() {
     return (
-      <img className="backward" src={backward} onClick={() => this.props.onClick()} alt="Backward"></img>
+      <div className="Backward" style={{backgroundColor: this.props.color}} onClick={() => this.props.onClick()}></div>
     );
   }
 }
