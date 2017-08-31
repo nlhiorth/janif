@@ -1,0 +1,13 @@
+.Forward, .Backward {
+  background-color: #6ab4aa;
+  background-repeat: no-repeat;
+  width: 5rem;
+  height: 5rem;
+}
+
+.Forward {
+  background-image: url(./forward-inverse.svg);
+}
+.Backward {
+  background-image: url(./backward-inverse.svg);
+}

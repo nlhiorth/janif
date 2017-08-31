@@ -126,11 +126,11 @@ class ScoreCard extends Component {
               <input value={this.props.curround.points} onChange={this.onChange} ref={(input) => { this.textInput = input; }} style={{color: this.props.curplayer.color}} className="Score" min="0" max="50" size="3" maxLength="2" pattern="\d*" placeholder="+0"/>
             </form>
             <div className="Buttons">
-              <Backward onClick={() => this.prevPlayer()}/>
+              <Backward color={this.props.curplayer.color} onClick={() => this.prevPlayer()}/>
               <Loss condition={this.props.curround.condition} onClick={() => this.props.onLoss(this.props.curplayer.id)}/>
               <Janif condition={this.props.curround.condition} onClick={() => this.props.onJanif(this.props.curplayer.id)}/>
               <Win condition={this.props.curround.condition} onClick={() => this.props.onWin(this.props.curplayer.id)}/>
-              <Forward onClick={() => this.nextPlayer()}/>
+              <Forward color={this.props.curplayer.color} onClick={() => this.nextPlayer()}/>
             </div>
           </div>
         </div>
