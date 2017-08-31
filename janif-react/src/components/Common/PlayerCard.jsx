@@ -29,7 +29,9 @@ class PlayerCard extends Component {
           </Animation>
           <div className="Buttons">
             <Banana fresh={this.props.player.banana} onClick={() => this.props.onBanana(this.props.player.id)}/>
-            <Confetti active={this.props.player.banana} config={config}/>
+            <Confetti active={
+              (!this.props.player.banana && !this.props.player.bananalock) || (!this.props.player.bean && !this.props.player.beanlock)
+            } config={config}/>
             <Bean fresh={this.props.player.bean} onClick={() => this.props.onBean(this.props.player.id)}/>
           </div>
         </div>
