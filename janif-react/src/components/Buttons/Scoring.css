@@ -3,10 +3,16 @@
   background-repeat: no-repeat;
   width: 5rem;
   height: 5rem;
+  display: flex;
+  justify-content: center; /* align horizontal */
+  align-items: center;
 }
 
 .Janif, .JanifSelected, .Loss, .LossSelected, .Win, .WinSelected {
   border-radius: 50%;
+  color: #FFF;
+  font-size: 2rem;
+  text-align: center;
 }
 
 .Forward {
