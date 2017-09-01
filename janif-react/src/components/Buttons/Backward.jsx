@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Navigation.css';
+import './Scoring.css';
 
 class Backward extends Component {
   render() {

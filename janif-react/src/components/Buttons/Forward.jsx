@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Navigation.css';
+import './Scoring.css';
 
 class Forward extends Component {
   render() {
