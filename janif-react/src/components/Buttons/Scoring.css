@@ -1,0 +1,38 @@
+.Forward, .Backward, .Janif, .JanifSelected, .Loss, .LossSelected, .Win, .WinSelected {
+  background-color: #6ab4aa;
+  background-repeat: no-repeat;
+  width: 5rem;
+  height: 5rem;
+}
+
+.Janif, .JanifSelected, .Loss, .LossSelected, .Win, .WinSelected {
+  border-radius: 50%;
+}
+
+.Forward {
+  background-image: url(./forward-inverse.svg);
+}
+.Backward {
+  background-image: url(./backward-inverse.svg);
+}
+
+.Janif {
+  background-image: url(./banana.svg);
+}
+.JanifSelected {
+  background-image: url(./used-banana.svg);
+}
+
+.Win {
+  background-image: url(./banana.svg);
+}
+.WinSelected {
+  background-image: url(./used-banana.svg);
+}
+
+.Loss {
+  background-image: url(./banana.svg);
+}
+.LossSelected {
+  background-image: url(./used-banana.svg);
+}
