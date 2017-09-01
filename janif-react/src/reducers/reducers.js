@@ -39,10 +39,9 @@ function player(state = {}, action) {
         return state;
       }
       
-      action.points = parseInt(action.points, 10);
 
       return Object.assign({}, state, {
-        score: (action.points !== 0 && action.points !== '') ? ruleModify(state.score + action.points) : state.score,
+        score: (action.points !== 0 && action.points !== '') ? ruleModify(state.score + parseInt(action.points, 10)) : state.score,
         prev: state.score,
         bananalock: (!state.banana),
         beanlock: (!state.bean),
