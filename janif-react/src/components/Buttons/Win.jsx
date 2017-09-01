@@ -5,7 +5,7 @@ class Win extends Component {
 
   render() {
     return (
-      <div className={this.props.condition === 'win' ? 'WinSelected' : 'Win'} onClick={() => this.props.onClick()}></div>
+      <div className={this.props.condition === 'win' ? 'WinSelected' : 'Win'} onClick={() => this.props.onClick()}>-10</div>
     );
   }
 }

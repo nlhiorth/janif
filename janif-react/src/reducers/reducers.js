@@ -38,6 +38,8 @@ function player(state = {}, action) {
       if (state.id !== action.id) {
         return state;
       }
+      
+      action.points = parseInt(action.points, 10);
 
       return Object.assign({}, state, {
         score: (action.points !== 0 && action.points !== '') ? ruleModify(state.score + action.points) : state.score,
