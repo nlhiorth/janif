@@ -127,9 +127,9 @@ class ScoreCard extends Component {
             </form>
             <div className="Buttons">
               <Backward color={this.props.curplayer.color} onClick={() => this.prevPlayer()}/>
-              <Loss condition={this.props.curround.condition} onClick={() => this.props.onLoss(this.props.curplayer.id)}/>
-              <Janif condition={this.props.curround.condition} onClick={() => this.props.onJanif(this.props.curplayer.id)}/>
-              <Win condition={this.props.curround.condition} onClick={() => this.props.onWin(this.props.curplayer.id)}/>
+              <Loss color={this.props.curplayer.color} condition={this.props.curround.condition} onClick={() => this.props.onLoss(this.props.curplayer.id)}/>
+              <Janif color={this.props.curplayer.color} condition={this.props.curround.condition} onClick={() => this.props.onJanif(this.props.curplayer.id)}/>
+              <Win color={this.props.curplayer.color} condition={this.props.curround.condition} onClick={() => this.props.onWin(this.props.curplayer.id)}/>
               <Forward color={this.props.curplayer.color} onClick={() => this.nextPlayer()}/>
             </div>
           </div>

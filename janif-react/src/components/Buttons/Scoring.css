@@ -23,22 +23,22 @@
 }
 
 .Janif {
-  background-image: url(./banana.svg);
+  /*background-image: url(./banana.svg);*/
 }
 .JanifSelected {
-  background-image: url(./used-banana.svg);
+  /*background-image: url(./used-banana.svg);*/
 }
 
 .Win {
-  background-image: url(./banana.svg);
+  /*background-image: url(./banana.svg);*/
 }
 .WinSelected {
-  background-image: url(./used-banana.svg);
+  /*background-image: url(./used-banana.svg);*/
 }
 
 .Loss {
-  background-image: url(./banana.svg);
+  /*background-image: url(./banana.svg);*/
 }
 .LossSelected {
-  background-image: url(./used-banana.svg);
+  /*background-image: url(./used-banana.svg);*/
 }
