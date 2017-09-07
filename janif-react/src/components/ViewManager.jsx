@@ -95,7 +95,7 @@ class ViewManager extends Component {
         >
           {(this.props.curview === 'start') &&
             <div key="start" className="View">
-                <StartView gotoView={this.props.gotoView} />
+                <StartView />
             </div>
           }
         </Transition>
@@ -116,7 +116,7 @@ class ViewManager extends Component {
         >
           {(this.props.curview === 'main') &&
             <div key="main" className="View">
-                <MainView gotoView={this.props.gotoView} />
+                <MainView />
             </div>
           }
         </Transition>
@@ -137,7 +137,7 @@ class ViewManager extends Component {
         >
           {(this.props.curview === 'scoring') &&
             <div key="scoring" className="View">
-              <ScoringView key="scoring" gotoView={this.props.gotoView} />
+              <ScoringView />
             </div>
           }
 
@@ -159,7 +159,7 @@ class ViewManager extends Component {
         >
           {(this.props.curview === 'setup') &&
             <div key="setup" className="View">
-              <SetupView key="setup" gotoView={this.props.gotoView} />
+              <SetupView />
             </div>
           }
 
@@ -181,7 +181,7 @@ class ViewManager extends Component {
         >
           {(this.props.curview === 'summary') &&
             <div key="summary" className="View">
-              <SummaryView key="summary" gotoView={this.props.gotoView} />
+              <SummaryView />
             </div>
           }
 

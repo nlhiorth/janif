@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Main from '../components/Views/Main';
-import { useBanana, useBean } from '../actions/actions';
+import { useBanana, useBean, gotoView } from '../actions/actions';
 
 function mapStateToProps(state) {
   return {players: state.players}
@@ -13,6 +13,9 @@ function mapDispatchToProps(dispatch) {
     },
     onBean: (id) => {
       dispatch(useBean(id))
+    },
+    gotoView: (view, header) => {
+      dispatch(gotoView(view, header))
     }
   }
 }
