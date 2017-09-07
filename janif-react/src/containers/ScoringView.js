@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Scoring from '../components/Views/Scoring';
-import { roundLoss, roundWin, roundJanif, setPoints, nextPlayer, prevPlayer } from '../actions/actions';
+import { roundLoss, roundWin, roundJanif, setPoints, nextPlayer, prevPlayer, gotoView } from '../actions/actions';
 
 function mapStateToProps(state) {
   return {
@@ -28,6 +28,9 @@ function mapDispatchToProps(dispatch) {
     },
     prevPlayer: () => {
       dispatch(prevPlayer())
+    },
+    gotoView: (view, header) => {
+      dispatch(gotoView(view, header))
     }
   }
 }
