@@ -5,7 +5,7 @@ class Janif extends Component {
 
   render() {
     return (
-      <div className={this.props.condition === 'janif' ? 'JanifSelected' : 'Janif'} onClick={() => this.props.onClick()}>0</div>
+      <div className={this.props.condition === 'janif' ? 'JanifSelected' : 'Janif'} style={{backgroundColor: this.props.color}} onClick={() => this.props.onClick()}>0</div>
     );
   }
 }
