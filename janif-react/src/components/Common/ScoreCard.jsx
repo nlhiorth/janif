@@ -23,54 +23,6 @@ class ScoreCard extends Component {
     this.textInput.focus();
   }
 
-  loss() {
-    const player = Object.assign({}, this.state.players[this.props.curplayer]);
-
-    if (player.condition === 'loss') {
-      player.condition = 'normal';
-      player.score -= 25;
-    } else {
-      player.condition = 'loss';
-      player.score += 25;
-    }
-
-    this.setState(prevState => ({
-      players: prevState.players.map(pl => pl.id === this.props.curplayer ? player : pl)
-    }), (() => this.next()));
-  }
-
-  janif() {
-    const player = Object.assign({}, this.state.players[this.props.curplayer]);
-
-    if (player.condition === 'janif') {
-      player.condition = 'normal';
-      player.score = 0;
-    } else {
-      player.condition = 'janif';
-      player.score = 0;
-    }
-
-    this.setState(prevState => ({
-      players: prevState.players.map(pl => pl.id === this.props.curplayer ? player : pl)
-    }), (() => this.next()));
-  }
-
-  win() {
-    const player = Object.assign({}, this.state.players[this.props.curplayer]);
-
-    if (player.condition === 'win') {
-      player.condition = 'normal';
-      player.score = 0;
-    } else {
-      player.condition = 'win';
-      player.score = -10;
-    }
-
-    this.setState(prevState => ({
-      players: prevState.players.map(pl => pl.id === this.props.curplayer ? player : pl)
-    }), (() => this.next()));
-  }
-
   nextPlayer() {
     if (this.props.index + 1 >= this.props.players.length) {
       this.props.gotoView('summary', false);
@@ -110,7 +62,6 @@ class ScoreCard extends Component {
 
   onSubmit(e) {
     e.preventDefault();
-    /* var score = this.state.input; */
     this.focus();
   }
 
