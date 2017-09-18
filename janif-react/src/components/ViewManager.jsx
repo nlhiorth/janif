@@ -72,9 +72,11 @@ class ViewManager extends Component {
           }}
         >
           {this.props.header &&
-            <Wrapper key="header">
-              <Header resetState={this.props.resetState}/>
-            </Wrapper>
+            <div key="header">
+              <Wrapper>
+                <Header resetState={this.props.resetState}/>
+              </Wrapper>
+            </div>
           }
         </Transition>
 
@@ -95,9 +97,11 @@ class ViewManager extends Component {
           }}
         >
           {(this.props.curview === 'start') &&
-            <Wrapper key="start">
-                <StartView />
-            </Wrapper>
+            <div key="start">
+              <Wrapper>
+                  <StartView />
+              </Wrapper>
+            </div>
           }
         </Transition>
         <Transition
@@ -117,9 +121,9 @@ class ViewManager extends Component {
         >
           {(this.props.curview === 'main') &&
             <div key="main">
-            <Wrapper>
-                <MainView />
-            </Wrapper>
+              <Wrapper>
+                  <MainView />
+              </Wrapper>
             </div>
           }
         </Transition>
@@ -139,9 +143,11 @@ class ViewManager extends Component {
           }}
         >
           {(this.props.curview === 'scoring') &&
-            <Wrapper key="scoring">
-              <ScoringView />
-            </Wrapper>
+            <div key="scoring">
+              <Wrapper>
+                <ScoringView />
+              </Wrapper>
+            </div>
           }
 
         </Transition>
@@ -161,9 +167,11 @@ class ViewManager extends Component {
           }}
         >
           {(this.props.curview === 'setup') &&
-            <Wrapper key="setup">
-              <SetupView />
-            </Wrapper>
+            <div key="setup">
+              <Wrapper>
+                <SetupView />
+              </Wrapper>
+            </div>
           }
 
         </Transition>
@@ -183,9 +191,11 @@ class ViewManager extends Component {
           }}
         >
           {(this.props.curview === 'summary') &&
-            <Wrapper key="summary">
-              <SummaryView />
-            </Wrapper>
+            <div key="summary">
+              <Wrapper>
+                <SummaryView />
+              </Wrapper>
+            </div>
           }
 
         </Transition>
