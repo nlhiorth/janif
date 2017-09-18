@@ -38,7 +38,7 @@ function player(state = {}, action) {
       if (state.id !== action.id) {
         return state;
       }
-      
+
 
       return Object.assign({}, state, {
         score: (action.points !== 0 && action.points !== '') ? ruleModify(state.score + parseInt(action.points, 10)) : state.score,
@@ -67,7 +67,7 @@ function player(state = {}, action) {
         return state;
       }
 
-      if (!state.bean && state.beanlock) {
+      if (!state.bean && state.beanlock || state.score < 50 || state.score > 100) {
         return state;
       }
 
