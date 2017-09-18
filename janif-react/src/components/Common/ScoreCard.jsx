@@ -23,8 +23,13 @@ class ScoreCard extends Component {
     this.textInput.focus();
   }
 
+  unFocus() {
+    this.textInput.blur();
+  }
+
   nextPlayer() {
     if (this.props.index + 1 >= this.props.players.length) {
+      this.unFocus();
       this.props.gotoView('summary', false);
     } else {
       this.setState({
