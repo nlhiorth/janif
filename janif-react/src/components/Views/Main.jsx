@@ -5,6 +5,7 @@ import './Main.css'
 
 class Main extends Component {
   render() {
+    console.log("menlo");
     return (
       <div className="Main">
         <div className="LeftColumn">

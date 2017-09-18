@@ -5,6 +5,7 @@ import './ViewManager.css';
 
 import Header from './Common/Header';
 import HeadSpace from './Common/HeadSpace';
+import Wrapper from './Common/Wrapper';
 
 import MainView from '../containers/MainView';
 import ScoringView from '../containers/ScoringView';
@@ -71,9 +72,9 @@ class ViewManager extends Component {
           }}
         >
           {this.props.header &&
-            <div key="header">
+            <Wrapper key="header">
               <Header resetState={this.props.resetState}/>
-            </div>
+            </Wrapper>
           }
         </Transition>
 
@@ -94,9 +95,9 @@ class ViewManager extends Component {
           }}
         >
           {(this.props.curview === 'start') &&
-            <div key="start" className="View">
+            <Wrapper key="start">
                 <StartView />
-            </div>
+            </Wrapper>
           }
         </Transition>
         <Transition
@@ -115,8 +116,10 @@ class ViewManager extends Component {
           }}
         >
           {(this.props.curview === 'main') &&
-            <div key="main" className="View">
+            <div key="main">
+            <Wrapper>
                 <MainView />
+            </Wrapper>
             </div>
           }
         </Transition>
@@ -136,9 +139,9 @@ class ViewManager extends Component {
           }}
         >
           {(this.props.curview === 'scoring') &&
-            <div key="scoring" className="View">
+            <Wrapper key="scoring">
               <ScoringView />
-            </div>
+            </Wrapper>
           }
 
         </Transition>
@@ -158,9 +161,9 @@ class ViewManager extends Component {
           }}
         >
           {(this.props.curview === 'setup') &&
-            <div key="setup" className="View">
+            <Wrapper key="setup">
               <SetupView />
-            </div>
+            </Wrapper>
           }
 
         </Transition>
@@ -180,9 +183,9 @@ class ViewManager extends Component {
           }}
         >
           {(this.props.curview === 'summary') &&
-            <div key="summary" className="View">
+            <Wrapper key="summary">
               <SummaryView />
-            </div>
+            </Wrapper>
           }
 
         </Transition>
