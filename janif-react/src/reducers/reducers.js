@@ -67,7 +67,7 @@ function player(state = {}, action) {
         return state;
       }
 
-      if (!state.bean && state.beanlock || state.score < 50 || state.score > 100) {
+      if ((!state.bean && state.beanlock) || state.score < 50 || state.score > 100) {
         return state;
       }
 
