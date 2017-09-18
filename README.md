@@ -1,55 +1,7 @@
-# janif
+# JANIF
 An app for tracking scores in the card game Janif
 
-### Current players object
-```json
-{
-  "players": [
-    {
-      "id": 0,
-      "score": 51,
-      "name": "Nils",
-      "banana": false,
-      "bean": true
-    },
-    {
-      "id": 1,
-      "score": 36,
-      "name": "Chris",
-      "banana": true,
-      "bean": false
-    }
-  ]
-}
-```
+## About
+Janif is a variant of the game Yaniv, with some added rules and player powerups that allow for a more dynamic game progression. With the tagline "Anything can turn around", the game allows for players to correct past mistakes and turn a losing streak into a victory.
 
-### Data format for score updates
-```json
-{
-	"scoreupdate": [
-	  {
-	    "id": 0,
-	    "score": 0,
-	    "condition": "janif"
-	  },
-	  {
-	    "id": 1,
-	    "score": 23,
-	    "condition": "normal"
-	  },
-	  {
-	    "id": 2,
-	    "score": -10,
-	    "condition": "win"
-	  },
-	  {
-	    "id": 3,
-	    "score": 26,
-	    "condition": "loss"
-	  }
-	]
-}
-```
-
-TODO:
-Setup screen
+Because of the many rules that affect scoring, the Janif app was made to ease the tracking of players' score and powerups. It also provided a testing ground for React and Redux.
