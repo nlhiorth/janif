@@ -19,3 +19,4 @@ yarn-error.log*
 /janif-react/yarn.lock
 /janif-node/yarn.lock
 /janif-node/.eslintrc.rc
+config.js
