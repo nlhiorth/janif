@@ -2,6 +2,7 @@ const firebase = require('firebase');
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
+import config from 'config.js';
 
 let roomNum = 0;
 let sessionNum = 0;
@@ -11,14 +12,7 @@ app.use(bodyParser.json()); // support json encoded bodies
 //app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 // Initialize Firebase
-const config = {
-  apiKey: 'AIzaSyDu3d7I2pAEVz8Izas7OYQDaGkj5shKFyI',
-  authDomain: 'janif-backend.firebaseapp.com',
-  databaseURL: 'https://janif-backend.firebaseio.com',
-  projectId: 'janif-backend',
-  storageBucket: 'janif-backend.appspot.com',
-  messagingSenderId: '114103878367',
-};
+
 firebase.initializeApp(config);
 const database = firebase.database();
 
