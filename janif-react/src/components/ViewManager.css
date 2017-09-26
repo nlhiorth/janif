@@ -27,7 +27,11 @@
 .Wrapper {
   position: absolute;
   z-index: 1000;
-  width: 100vw;
+  width: calc(100vw - 1px);
   -webkit-transform: translateZ(0);
   -webkit-backface-visibility: hidden;
+}
+
+.ViewManager {
+  width: calc(100vw - 1px);
 }

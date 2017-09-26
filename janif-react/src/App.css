@@ -17,13 +17,15 @@ button {
 body {
   /*background-color: #7CB5AD;*/
   background-color: #FFF;
-  /* font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; */
-  font-family: 'Nunito', sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 300;
   font-size: 1rem; /* 15px */
   line-height: 1.7;
   margin: 0;
   padding: 1rem;
+  width: calc(100vw - 1px);
+  height: 100vh;
+  overflow-x: hidden;
 }
 
 a {

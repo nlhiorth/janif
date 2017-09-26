@@ -1,11 +1,12 @@
 .Main {
-  width: 100vw;
+  width: calc(100vw - 1px);
   height: auto;
   display: flex;
   justify-content: center;
   align-items: flex-start;
   align-content: flex-start;
   /*background-color: #7CB5AD;*/
+  overflow-x: hidden;
 }
 
 .Main .PlayerList {
