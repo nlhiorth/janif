@@ -1,15 +1,15 @@
-.ViewManager>div>.Wrapper>.Header {
-  width: 100%;
+.ViewManager>.Header {
+  width: 100vw;
   height: auto;
   /*background-color: #5fba7d; 	hsl(172, 28%, 60%)*/
   background-color: #6ab4aa; /* hsl(172, 33%, 56%) */
   box-shadow: 0 0 1.5rem #888888;
   margin: 0;
-  padding: 2rem 1rem 0rem 0rem;
+  padding: 2rem 0rem 0rem 0rem;
   position: fixed;
   top: 0px;
   left: 0px;
-  z-index: 999;
+  z-index: 1001;
   display: flex;
   justify-content: space-around;
   align-items: stretch;

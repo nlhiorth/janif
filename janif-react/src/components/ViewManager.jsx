@@ -59,27 +59,7 @@ class ViewManager extends Component {
   render() {
     return (
       <div className="ViewManager">
-        <Transition
-          component={false}
-          appear={{
-            translateY: -200
-          }}
-          enter={{
-            translateY: spring(0)
-          }}
-          leave={{
-            translateY: -200
-          }}
-        >
-          {this.props.header &&
-            <div key="header">
-              <Wrapper>
-                <Header resetState={this.props.resetState}/>
-              </Wrapper>
-            </div>
-          }
-        </Transition>
-
+        {this.props.header && <Header resetState={this.props.resetState}/>}
         {this.props.header && <HeadSpace />}
         <Transition
           component={false}
