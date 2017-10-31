@@ -12,14 +12,20 @@ class ScoreCard extends Component {
     super(props);
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-    this.focus = this.focus.bind(this);
-    setTimeout(() => this.focus(), 750);
+
+
     this.state = {
       flip: false,
     }
   }
 
+  componentDidMount() {
+    setTimeout(() => this.focus(), 750);
+    console.log('component was mount');
+  }
+
   focus() {
+    console.log('helo it was');
     this.textInput.focus();
   }
 
