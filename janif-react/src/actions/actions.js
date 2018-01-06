@@ -1,3 +1,5 @@
+import { socket } from '../index.js';
+
 /* Action types */
 
 export const ADD_PLAYER = 'ADD_PLAYER';
@@ -14,6 +16,8 @@ export const GOTO_VIEW = 'GOTO_VIEW';
 export const CLEAR_SCORING = 'CLEAR_SCORING';
 export const SET_NAME = 'SET_NAME';
 export const RESET_STATE = 'RESET_STATE';
+export const UPDATE_PLAYERS = 'UPDATE_PLAYERS';
+export const NEW_ID = 'NEW_ID';
 
 /* Action creators */
 
@@ -88,6 +92,9 @@ export function prevPlayer() {
 }
 
 export function gotoView(view, header = true) {
+  if (view === 'setup') {
+    socket.send(JSON.stringify({action: 'NEW_GAME'}));
+  }
   return {
     type: GOTO_VIEW,
     view,
@@ -111,5 +118,19 @@ export function setName(input) {
 export function resetState() {
   return {
     type: RESET_STATE
+  }
+}
+
+export function updatePlayers(data) {
+  return {
+    type: UPDATE_PLAYERS,
+    data
+  }
+}
+
+export function newID(id) {
+  return {
+    type: NEW_ID,
+    id
   }
 }

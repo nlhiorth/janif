@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { ADD_PLAYER, ADD_SCORE, USE_BANANA, USE_BEAN, ROUND_LOSS, ROUND_WIN, ROUND_JANIF, SET_POINTS, NEXT_PLAYER, PREV_PLAYER, GOTO_VIEW, CLEAR_SCORING, SET_NAME, RESET_STATE } from '../actions/actions.js';
+import { ADD_PLAYER, ADD_SCORE, USE_BANANA, USE_BEAN, ROUND_LOSS, ROUND_WIN, ROUND_JANIF, SET_POINTS, NEXT_PLAYER, PREV_PLAYER, GOTO_VIEW, CLEAR_SCORING, SET_NAME, RESET_STATE, NEW_ID, UPDATE_PLAYERS } from '../actions/actions.js';
 
 function players(state = [], action) {
   switch (action.type) {
@@ -23,6 +23,9 @@ function players(state = [], action) {
       return state.map(pl => (
         player(pl, action)
       ))
+
+    case UPDATE_PLAYERS:
+      return action.data;
 
     case RESET_STATE:
       return [];
@@ -225,7 +228,7 @@ function round(state = {}, action) {
   }
 }
 
-function game(state = {curview: "start", header: false, input: ''}, action) {
+function game(state = {curview: "start", header: false, input: '', id: ''}, action) {
   switch (action.type) {
     case GOTO_VIEW:
       return Object.assign({}, state, {
@@ -242,8 +245,14 @@ function game(state = {curview: "start", header: false, input: ''}, action) {
       return {
         curview: "start",
         header: false,
-        input: ''
+        input: '',
+        id: ''
       };
+
+    case NEW_ID:
+      return Object.assign({}, state, {
+        id: action.id
+      })
 
     default:
       return state;
