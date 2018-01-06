@@ -1,0 +1,16 @@
+<html>
+<head>
+</head>
+<body>
+<div> Hei </div>
+<script>
+// Create WebSocket connection.
+var socket = new WebSocket('ws://localhost:8080');
+
+// Listen for messages
+socket.onmessage = function (event) {
+    console.log(event.data);
+};
+</script>
+</body>
+</html>

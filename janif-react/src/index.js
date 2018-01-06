@@ -12,7 +12,7 @@ import './index.css';
 const localstate = {};
 let store = createStore(janifApp, localstate);
 console.log(store.getState());
-export const socket = new WebSocket('ws://192.168.0.2:8080');
+export const socket = new WebSocket('ws://192.168.0.25:3001');
 socket.addEventListener('message', function (event) {
   const message = JSON.parse(event.data);
 

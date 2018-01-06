@@ -3,6 +3,7 @@
 # dependencies
 /janif-react/node_modules/*
 /janif-node/node_modules/*
+/janif-server/node_modules/*
 
 # testing
 /coverage
@@ -18,5 +19,6 @@ yarn-debug.log*
 yarn-error.log*
 /janif-react/yarn.lock
 /janif-node/yarn.lock
+/janif-server/yarn.lock
 /janif-node/.eslintrc.rc
 config.js
