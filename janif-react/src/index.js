@@ -4,8 +4,8 @@ import App from './App';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import janifApp from './reducers/reducers';
-import { loadState, saveState } from './localStorage';
-import { addPlayer, addScore, useBanana, useBean, roundLoss, roundWin, roundJanif, setPoints, nextPlayer, prevPlayer, gotoView, newID, updatePlayers } from './actions/actions';
+//import { loadState, saveState } from './localStorage';
+import { newID, updatePlayers } from './actions/actions';
 import './index.css';
 
 //const localstate = loadState();
