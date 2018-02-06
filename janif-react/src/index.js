@@ -12,7 +12,7 @@ import './index.css';
 const localstate = {};
 let store = createStore(janifApp, localstate);
 console.log(store.getState());
-export const socket = new WebSocket('ws://192.168.0.25:3001');
+export const socket = new WebSocket('ws://localhost:3001');
 socket.addEventListener('message', function (event) {
   const message = JSON.parse(event.data);
 
@@ -33,8 +33,16 @@ socket.addEventListener('message', function (event) {
 
 store.subscribe(() => {
   //console.log(store.getState());
-  if (store.getState().game.curview === 'main') {
-    socket.send(JSON.stringify({action: 'STATE_UPDATE', data: store.getState()}));
+  if (store.getState().game.curview === 'main' && !store.getState().game.spectate) {
+
+    console.log(store.getState());
+    if (store.getState().players.length > 0) {
+      console.log('sending a state update');
+      socket.send(JSON.stringify({action: 'STATE_UPDATE', data: store.getState()}));
+    } else {
+      console.log('joining game');
+      socket.send(JSON.stringify({action: 'NEW_SPECTATOR', data: store.getState().game.id}));
+    }
   }
   //saveState(store.getState());
 });

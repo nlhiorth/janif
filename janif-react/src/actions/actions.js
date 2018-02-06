@@ -18,6 +18,7 @@ export const SET_NAME = 'SET_NAME';
 export const RESET_STATE = 'RESET_STATE';
 export const UPDATE_PLAYERS = 'UPDATE_PLAYERS';
 export const NEW_ID = 'NEW_ID';
+export const SPECTATE = 'SPECTATE';
 
 /* Action creators */
 
@@ -132,5 +133,11 @@ export function newID(id) {
   return {
     type: NEW_ID,
     id
+  }
+}
+
+export function spectate() {
+  return {
+    type: SPECTATE
   }
 }

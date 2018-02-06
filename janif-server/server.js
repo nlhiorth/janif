@@ -53,6 +53,25 @@ function parseIncoming(ws, obj) {
       })
     }
   }
+
+  if (obj.action === 'NEW_SPECTATOR') {
+    let gameId = obj.data;
+    let game = activeGames[gameId];
+
+    if (activeGames[gameId] !== undefined) {
+      console.log("PLAYER JOINED");
+      activeGames[gameId].players.push(ws);
+      
+      let json = {
+        action : 'UPDATE_PLAYERS',
+        data : game.state
+      }
+
+      game.players.forEach((player) => {
+        player.send(JSON.stringify(json));
+      })
+    }
+  }
 }
 
 wss.on('connection', function connection(ws) {

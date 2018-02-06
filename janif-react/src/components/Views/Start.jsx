@@ -8,6 +8,7 @@ class Start extends Component {
       <div className="Start">
         <div className="StartLogo">JANIF</div>
         <div className="StartButton" onClick={() => this.props.gotoView('setup', false)}>NEW GAME</div>
+        <div className="StartButton" onClick={() => this.props.gotoView('join', false)}>JOIN GAME</div>
       </div>
     );
   }

@@ -11,6 +11,7 @@ import MainView from '../containers/MainView';
 import ScoringView from '../containers/ScoringView';
 import SummaryView from '../containers/SummaryView';
 import SetupView from '../containers/SetupView';
+import JoinView from '../containers/JoinView';
 import StartView from '../containers/StartView';
 
 /* an
@@ -150,6 +151,30 @@ class ViewManager extends Component {
             <div key="setup">
               <Wrapper>
                 <SetupView />
+              </Wrapper>
+            </div>
+          }
+
+        </Transition>
+        <Transition
+          component={false}
+          appear={{
+            opacity: 0,
+            translateX: 1000
+          }}
+          enter={{
+            opacity: 1,
+            translateX: spring(0)
+          }}
+          leave={{
+            opacity: 0,
+            translateX: -1000
+          }}
+        >
+          {(this.props.curview === 'join') &&
+            <div key="join">
+              <Wrapper>
+                <JoinView />
               </Wrapper>
             </div>
           }
