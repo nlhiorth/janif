@@ -60,7 +60,7 @@ class ViewManager extends Component {
   render() {
     return (
       <div className="ViewManager">
-        {this.props.header && <Header resetState={this.props.resetState}/>}
+        {this.props.header && <Header resetState={this.props.resetState} gameId={this.props.gameId} />}
         {this.props.header && <HeadSpace />}
         <Transition
           component={false}

@@ -14,8 +14,7 @@ function parseIncoming(ws, obj) {
   console.log(obj)
 
   if (obj.action === 'NEW_GAME') {
-    //var hash = crypto.createHash('md5').update(new Date().getTime().toString()).digest('hex').slice(0,5);
-    var hash = "justinbieber"
+    var hash = crypto.createHash('md5').update(new Date().getTime().toString()).digest('hex').slice(0,5);
 
     if (activeGames[hash] !== undefined) {
       console.log("PLAYER JOINED");
@@ -61,7 +60,7 @@ function parseIncoming(ws, obj) {
     if (activeGames[gameId] !== undefined) {
       console.log("PLAYER JOINED");
       activeGames[gameId].players.push(ws);
-      
+
       let json = {
         action : 'UPDATE_PLAYERS',
         data : game.state

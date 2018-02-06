@@ -5,7 +5,8 @@ import { gotoView, resetState } from '../actions/actions';
 function mapStateToProps(state) {
   return {
     curview: state.game.curview,
-    header: state.game.header
+    header: state.game.header,
+    gameId: state.game.id
   }
 }
 
