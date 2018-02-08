@@ -14,35 +14,6 @@ import SetupView from '../containers/SetupView';
 import JoinView from '../containers/JoinView';
 import StartView from '../containers/StartView';
 
-/* an
-transitionName="wipe"
-transitionEnterTimeout={500}
-transitionLeaveTimeout={500}>
-
-<Transition
-  component={false}
-  appear={{
-    opacity: 0,
-    translateX: 500
-  }}
-  enter={{
-    opacity: 1,
-    translateX: spring(0)
-  }}
-  leave={{
-    opacity: 0,
-    translateX: -500
-  }}
->
-  {(this.props.curview === 'scoring') &&
-    <div key="scoring" className="View">
-      <ScoringView key="scoring" gotoView={this.props.gotoView} />
-    </div>
-  }
-
-</Transition>
-*/
-
 class ViewManager extends Component {
   constructor(props) {
     super(props);

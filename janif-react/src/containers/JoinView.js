@@ -4,8 +4,7 @@ import { addPlayer, gotoView, setName, newID, spectate } from '../actions/action
 
 function mapStateToProps(state) {
   return {
-    players: state.players,
-    input: state.game.input
+    players: state.players
   }
 }
 

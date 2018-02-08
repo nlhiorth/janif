@@ -1,0 +1,14 @@
+.joinInput {
+  display: block;
+  background: #fff;
+  flex-grow: 2;
+  flex-shrink: 1;
+  margin: 0;
+  box-sizing: border-box;
+  width: 100%;
+  vertical-align: bottom;
+  border: none;
+  border-bottom: 0.2rem solid #CCC;
+  margin-bottom: 1rem;
+  font-size: 3rem;
+}
