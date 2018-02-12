@@ -14,7 +14,9 @@ function parseIncoming(ws, obj) {
   console.log(obj)
 
   if (obj.action === 'NEW_GAME') {
-    var hash = crypto.createHash('md5').update(new Date().getTime().toString()).digest('hex').slice(0,5);
+    //var hash = crypto.createHash('md5').update(new Date().getTime().toString()).digest('hex').slice(0,5);
+    var hash = makeGameId();
+    console.log(hash);
 
     if (activeGames[hash] !== undefined) {
       console.log("PLAYER JOINED");
@@ -71,6 +73,14 @@ function parseIncoming(ws, obj) {
       })
     }
   }
+}
+
+function makeGameId() {
+  const low = 10000;
+  const high = 100000;
+  var id = Math.floor(Math.random() * (high - low) + low);
+  id = (id * 10) + (id*3 % 10);
+  return id;
 }
 
 wss.on('connection', function connection(ws) {
