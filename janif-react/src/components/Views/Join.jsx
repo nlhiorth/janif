@@ -50,7 +50,7 @@ class Join extends Component {
         {this.state.showButton && <div className="StartButton" onClick={() => this.showForm()}>JOIN GAME</div>}
         {this.state.showForm && <form className="setupform" onSubmit={this.onSubmit}>
           <div>
-            <input value={this.state.input} ref={input => this.textInput = input} className="joinInput" onChange={this.onChange} style={{color: 'hsl(' + (this.state.input.split('').reduce((acc, curval) => acc * (curval.codePointAt(0) - 64), 1) % 359) + ', 33%, 56%)'}} placeholder="GameID"/>
+            <input value={this.state.input} ref={input => this.textInput = input} className="joinInput" onChange={this.onChange} style={{color: 'hsl(' + (this.state.input.split('').reduce((acc, curval) => acc * (curval.codePointAt(0) - 64), 1) % 359) + ', 33%, 56%)'}} min="100000" max="999999" maxLength="6" pattern="\d*" placeholder="GameID"/>
           </div>
           <div><button className="Standard Stripped">{'JOIN'}</button></div>
         </form>}
