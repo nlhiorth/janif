@@ -31,6 +31,10 @@ class Join extends Component {
         this.setState({
           showSubmit: true
         });
+      } else {
+        this.setState({
+          showSubmit: false
+        });
       }
     });
   }
