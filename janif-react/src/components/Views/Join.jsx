@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Ready from '../Buttons/Ready.jsx';
 import './Setup.css';
 import '../Buttons/Buttons.css'
 import './Start.css';
