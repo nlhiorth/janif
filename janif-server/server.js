@@ -69,7 +69,9 @@ function parseIncoming(ws, obj) {
       }
 
       game.players.forEach((player) => {
-        player.send(JSON.stringify(json));
+        if (player.readyState == player.OPEN) {
+          player.send(JSON.stringify(json));
+        }
       })
     }
   }
