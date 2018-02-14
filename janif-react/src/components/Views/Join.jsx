@@ -11,7 +11,8 @@ class Join extends Component {
     this.state = {
       input: '',
       showForm: false,
-      showButton: true
+      showButton: true,
+      showSubmit: false
     }
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -25,6 +26,12 @@ class Join extends Component {
   onChange(e) {
     this.setState({
       input: e.target.value
+    }, () => {
+      if (this.checkId(this.state.input)) {
+        this.setState({
+          showSubmit: true
+        });
+      }
     });
   }
 
@@ -44,6 +51,12 @@ class Join extends Component {
     }, () => this.focus())
   }
 
+  checkId(id) {
+    var testid = Math.floor(id / 1e1);
+    testid = (testid * 10) + (testid*3 % 10);
+    return (testid == id);
+  }
+
   render() {
     return (
       <div className="Join">
@@ -52,7 +65,7 @@ class Join extends Component {
           <div>
             <input value={this.state.input} ref={input => this.textInput = input} className="joinInput" onChange={this.onChange} style={{color: 'hsl(' + (this.state.input.split('').reduce((acc, curval) => acc * (curval.codePointAt(0) - 64), 1) % 359) + ', 33%, 56%)'}} min="100000" max="999999" maxLength="6" pattern="\d*" placeholder="GameID"/>
           </div>
-          <div><button className="Standard Stripped">{'JOIN'}</button></div>
+          {this.state.showSubmit && <div><button className="Standard Stripped">{'JOIN'}</button></div>}
         </form>}
       </div>
     );
