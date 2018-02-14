@@ -75,6 +75,7 @@ function parseIncoming(ws, obj) {
           player.send(JSON.stringify(json));
         }
       })
+      console.log(activeGames);
     }
   }
 }

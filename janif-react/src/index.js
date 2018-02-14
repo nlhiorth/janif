@@ -33,7 +33,7 @@ socket.addEventListener('message', function (event) {
 
 store.subscribe(() => {
   //console.log(store.getState());
-  if (store.getState().game.curview === 'main' && !store.getState().game.spectate) {
+  if (store.getState().game.curview === 'main') {
 
     console.log(store.getState());
     if (store.getState().players.length > 0) {

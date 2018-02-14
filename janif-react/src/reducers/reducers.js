@@ -251,7 +251,7 @@ function game(state = {curview: "start", header: false, input: '', id: '', spect
 
     case SPECTATE:
       return {
-        specate: true
+        spectate: true
       };
 
     case NEW_ID:
