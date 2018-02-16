@@ -86,6 +86,18 @@ function parseIncoming(ws, obj) {
 
   if (obj.action === 'END_GAME') {
     let gameId = obj.data;
+    let game = activeGames[gameId];
+
+    let json = {
+      action : 'CLEAR_GAME'
+    }
+
+    game.players.forEach((player) => {
+      if (player.readyState == player.OPEN) {
+        player.send(JSON.stringify(json));
+      }
+    })
+
     delete activeGames[gameId];
     console.log(new Date().toTimeString() + ' -- Removed game with ID ' + gameId);
   }

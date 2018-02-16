@@ -5,7 +5,7 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import janifApp from './reducers/reducers';
 //import { loadState, saveState } from './localStorage';
-import { newID, updatePlayers } from './actions/actions';
+import { newID, updatePlayers, resetState } from './actions/actions';
 import './index.css';
 
 //const localstate = loadState();
@@ -24,6 +24,10 @@ socket.addEventListener('message', function (event) {
     case 'UPDATE_PLAYERS':
       console.log(message.data)
       store.dispatch(updatePlayers(message.data));
+      break;
+
+    case 'CLEAR_GAME':
+      store.dispatch(resetState());
       break;
 
     default:
