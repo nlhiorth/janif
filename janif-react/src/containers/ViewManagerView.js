@@ -6,7 +6,8 @@ function mapStateToProps(state) {
   return {
     curview: state.game.curview,
     header: state.game.header,
-    gameId: state.game.id
+    gameId: state.game.id,
+    spectate: state.game.spectate
   }
 }
 

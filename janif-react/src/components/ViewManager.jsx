@@ -31,7 +31,9 @@ class ViewManager extends Component {
   }
 
   exitGame() {
-    socket.send(JSON.stringify({action: 'END_GAME', data: this.props.gameId}));
+    if (!this.props.spectate) {
+      socket.send(JSON.stringify({action: 'END_GAME', data: this.props.gameId}));
+    }
     this.props.resetState();
   }
 
