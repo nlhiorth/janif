@@ -13,6 +13,7 @@ import SummaryView from '../containers/SummaryView';
 import SetupView from '../containers/SetupView';
 import JoinView from '../containers/JoinView';
 import StartView from '../containers/StartView';
+import { socket } from '../index';
 
 class ViewManager extends Component {
   constructor(props) {
@@ -26,12 +27,18 @@ class ViewManager extends Component {
         'summary'
       ]
     }
+    this.exitGame = this.exitGame.bind(this);
+  }
+
+  exitGame() {
+    socket.send(JSON.stringify({action: 'END_GAME', data: this.props.gameId}));
+    this.props.resetState();
   }
 
   render() {
     return (
       <div className="ViewManager">
-        {this.props.header && <Header resetState={this.props.resetState} gameId={this.props.gameId} />}
+        {this.props.header && <Header resetState={this.exitGame} gameId={this.props.gameId} />}
         {this.props.header && <HeadSpace />}
         <Transition
           component={false}

@@ -86,11 +86,8 @@ function parseIncoming(ws, obj) {
 
   if (obj.action === 'END_GAME') {
     let gameId = obj.data;
-    if (activeGames.delete(gameId)) {
-      console.log(new Date.toTimeString() + ' -- Removed game with ID ' + gameId);
-    } else {
-      console.log(new Date.toTimeString() + ' -- Tried to remove game with ID ' + gameId);
-    }
+    delete activeGames[gameId];
+    console.log(new Date().toTimeString() + ' -- Removed game with ID ' + gameId);
   }
 }
 
