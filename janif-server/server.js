@@ -57,6 +57,8 @@ function parseIncoming(ws, obj) {
         }
       })
       console.log(new Date(game.lastupdate).toTimeString() + ' -- Updated game with ID: ' + gameId);
+      console.log('Active games:');
+      console.log(activeGames);
     }
   }
 
@@ -79,6 +81,15 @@ function parseIncoming(ws, obj) {
         }
       })
       //console.log(activeGames);
+    }
+  }
+
+  if (obj.action === 'END_GAME') {
+    let gameId = obj.data;
+    if (activeGames.delete(gameId)) {
+      console.log(new Date.toTimeString() + ' -- Removed game with ID ' + gameId);
+    } else {
+      console.log(new Date.toTimeString() + ' -- Tried to remove game with ID ' + gameId);
     }
   }
 }
