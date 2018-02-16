@@ -11,18 +11,19 @@ var activeGames = {};
 
 function parseIncoming(ws, obj) {
   obj = JSON.parse(obj)
-  console.log(obj)
+  //console.log(obj)
 
   if (obj.action === 'NEW_GAME') {
     //var hash = crypto.createHash('md5').update(new Date().getTime().toString()).digest('hex').slice(0,5);
     var hash = makeGameId();
-    console.log(hash);
+    //console.log(hash);
 
     if (activeGames[hash] !== undefined) {
       console.log("PLAYER JOINED");
       activeGames[hash].players.push(ws);
     } else {
-      activeGames[hash] = {admin : ws, players : [], state : {}};
+      activeGames[hash] = {admin : ws, players : [], state : {}, lastupdate: Date.now()};
+      console.log(new Date(activeGames[hash].lastupdate).toTimeString() + ' -- Started new game with ID: ' + hash);
     }
 
     ws.send(JSON.stringify({action : 'NEW_GAME_ID', data : hash}))
@@ -40,8 +41,9 @@ function parseIncoming(ws, obj) {
 
 
     if (!gameIdEmpty && (JSON.stringify(game.state) !== JSON.stringify(obj.data.players))) {
-      console.log(JSON.stringify(game.state), JSON.stringify(obj.data.players))
+      //console.log(JSON.stringify(game.state), JSON.stringify(obj.data.players))
       game.state = obj.data.players
+      game.lastupdate = Date.now();
 
       let json = {
         action : 'UPDATE_PLAYERS',
@@ -54,6 +56,7 @@ function parseIncoming(ws, obj) {
           player.send(JSON.stringify(json));
         }
       })
+      console.log(new Date(game.lastupdate).toTimeString() + ' -- Updated game with ID: ' + gameId);
     }
   }
 
@@ -75,7 +78,7 @@ function parseIncoming(ws, obj) {
           player.send(JSON.stringify(json));
         }
       })
-      console.log(activeGames);
+      //console.log(activeGames);
     }
   }
 }

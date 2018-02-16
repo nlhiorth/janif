@@ -26,7 +26,7 @@ class Join extends Component {
     this.setState({
       input: e.target.value
     }, () => {
-      if (this.checkId(this.state.input) && this.state.input >= 100000) {
+      if (this.state.input >= 100000 && this.checkId(this.state.input)) {
         this.setState({
           showSubmit: true
         });
