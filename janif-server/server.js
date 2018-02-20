@@ -11,12 +11,9 @@ var activeGames = {};
 
 function parseIncoming(ws, obj) {
   obj = JSON.parse(obj)
-  //console.log(obj)
 
   if (obj.action === 'NEW_GAME') {
-    //var hash = crypto.createHash('md5').update(new Date().getTime().toString()).digest('hex').slice(0,5);
     var hash = makeGameId();
-    //console.log(hash);
 
     if (activeGames[hash] !== undefined) {
       console.log("PLAYER JOINED");
@@ -33,11 +30,7 @@ function parseIncoming(ws, obj) {
 
     let gameId = obj.data.game.id;
     let game = activeGames[gameId];
-    let gameIdEmpty = gameId === ''
-    //console.log('OBJ_RECEIVED',obj)
-    //console.log('GAME_OBJ', game);
-
-
+    let gameIdEmpty = gameId === '';
 
     if (!gameIdEmpty && (JSON.stringify(game.state) !== JSON.stringify(obj.data.players))) {
       //console.log(JSON.stringify(game.state), JSON.stringify(obj.data.players))
@@ -79,8 +72,7 @@ function parseIncoming(ws, obj) {
         if (player.readyState == player.OPEN) {
           player.send(JSON.stringify(json));
         }
-      })
-      //console.log(activeGames);
+      });
     }
   }
 
@@ -114,7 +106,7 @@ function makeGameId() {
 function sessionCleanup(games) {
   const ttl = 43200000; //12 hours in milliseconds
   Object.keys(games).forEach(val => {
-    if ((games[val].lastupdate + 10000) < Date.now()) {
+    if ((games[val].lastupdate + ttl) < Date.now()) {
       delete games[val];
       console.log(new Date().toTimeString() + ' -- Cleaned up game with ID ' + val);
     }
