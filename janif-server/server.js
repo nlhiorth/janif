@@ -34,7 +34,6 @@ function parseIncoming(ws, obj) {
     let gameId = obj.data.game.id;
     let game = activeGames[gameId];
     let gameIdEmpty = gameId === ''
-
     //console.log('OBJ_RECEIVED',obj)
     //console.log('GAME_OBJ', game);
 
@@ -60,6 +59,7 @@ function parseIncoming(ws, obj) {
       console.log('Active games:');
       console.log(activeGames);
     }
+    activeGames = sessionCleanup(activeGames);
   }
 
   if (obj.action === 'NEW_SPECTATOR') {
@@ -109,6 +109,17 @@ function makeGameId() {
   var id = Math.floor(Math.random() * (high - low) + low);
   id = (id * 10) + (id*3 % 10);
   return id;
+}
+
+function sessionCleanup(games) {
+  const ttl = 43200000; //12 hours in milliseconds
+  Object.keys(games).forEach(val => {
+    if ((games[val].lastupdate + 10000) < Date.now()) {
+      delete games[val];
+      console.log(new Date().toTimeString() + ' -- Cleaned up game with ID ' + val);
+    }
+  });
+  return games;
 }
 
 wss.on('connection', function connection(ws) {
