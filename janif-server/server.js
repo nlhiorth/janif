@@ -78,20 +78,7 @@ function parseIncoming(ws, obj) {
 
   if (obj.action === 'END_GAME') {
     let gameId = obj.data;
-    let game = activeGames[gameId];
-
-    let json = {
-      action : 'CLEAR_GAME'
-    }
-
-    game.players.forEach((player) => {
-      if (player.readyState == player.OPEN) {
-        player.send(JSON.stringify(json));
-      }
-    })
-
-    delete activeGames[gameId];
-    console.log(new Date().toTimeString() + ' -- Removed game with ID ' + gameId);
+    removeGame(gameId);
   }
 }
 
@@ -107,11 +94,28 @@ function sessionCleanup(games) {
   const ttl = 43200000; //12 hours in milliseconds
   Object.keys(games).forEach(val => {
     if ((games[val].lastupdate + ttl) < Date.now()) {
-      delete games[val];
-      console.log(new Date().toTimeString() + ' -- Cleaned up game with ID ' + val);
+      console.log(new Date().toTimeString() + ' -- Found inactive game with ID ' + val);
+      removeGame(val);
     }
   });
   return games;
+}
+
+function removeGame(gameId) {
+  let game = activeGames[gameId];
+
+  let json = {
+    action : 'CLEAR_GAME'
+  }
+
+  game.players.forEach((player) => {
+    if (player.readyState == player.OPEN) {
+      player.send(JSON.stringify(json));
+    }
+  })
+
+  delete activeGames[gameId];
+  console.log(new Date().toTimeString() + ' -- Removed game with ID ' + gameId);
 }
 
 wss.on('connection', function connection(ws) {
