@@ -59,20 +59,10 @@ function parseIncoming(ws, obj) {
     let gameId = obj.data;
     let game = activeGames[gameId];
 
-    if (activeGames[gameId] !== undefined) {
-      console.log("PLAYER JOINED");
-      activeGames[gameId].players.push(ws);
-
-      let json = {
-        action : 'UPDATE_PLAYERS',
-        data : game.state
-      }
-
-      game.players.forEach((player) => {
-        if (player.readyState == player.OPEN) {
-          player.send(JSON.stringify(json));
-        }
-      });
+    if (game !== undefined) {
+      game.players.push(ws);
+      console.log(new Date().toTimeString() + ' -- Player joined game with ID ' + gameId);
+      sendUpdate(gameId);
     }
   }
 
@@ -103,7 +93,6 @@ function sessionCleanup(games) {
 
 function removeGame(gameId) {
   let game = activeGames[gameId];
-
   let json = {
     action : 'CLEAR_GAME'
   }
@@ -116,6 +105,21 @@ function removeGame(gameId) {
 
   delete activeGames[gameId];
   console.log(new Date().toTimeString() + ' -- Removed game with ID ' + gameId);
+}
+
+function sendUpdate(gameId) {
+  let game = activeGames[gameId];
+  let json = {
+    action : 'UPDATE_PLAYERS',
+    data : game.state
+  }
+
+  game.players.forEach((player) => {
+    if (player.readyState == player.OPEN) {
+      player.send(JSON.stringify(json));
+    }
+  });
+  console.log(new Date().toTimeString() + ' -- Sent updates for game with ID ' + gameId);
 }
 
 wss.on('connection', function connection(ws) {
