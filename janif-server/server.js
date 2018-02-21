@@ -20,37 +20,23 @@ function parseIncoming(ws, obj) {
       activeGames[hash].players.push(ws);
     } else {
       activeGames[hash] = {admin : ws, players : [], state : {}, lastupdate: Date.now()};
-      console.log(new Date(activeGames[hash].lastupdate).toTimeString() + ' -- Started new game with ID: ' + hash);
+      console.log(new Date(activeGames[hash].lastupdate).toTimeString() + ' ── Started new game with ID: ' + hash);
     }
 
     ws.send(JSON.stringify({action : 'NEW_GAME_ID', data : hash}))
   }
 
   if (obj.action === 'STATE_UPDATE') {
-
     let gameId = obj.data.game.id;
     let game = activeGames[gameId];
     let gameIdEmpty = gameId === '';
 
     if (!gameIdEmpty && (JSON.stringify(game.state) !== JSON.stringify(obj.data.players))) {
-      //console.log(JSON.stringify(game.state), JSON.stringify(obj.data.players))
       game.state = obj.data.players
       game.lastupdate = Date.now();
 
-      let json = {
-        action : 'UPDATE_PLAYERS',
-        data : game.state
-      }
-
-      game.admin.send(JSON.stringify(json))
-      game.players.forEach((player) => {
-        if (player.readyState == player.OPEN) {
-          player.send(JSON.stringify(json));
-        }
-      })
-      console.log(new Date(game.lastupdate).toTimeString() + ' -- Updated game with ID: ' + gameId);
-      console.log('Active games:');
-      console.log(activeGames);
+      sendUpdate(gameId);
+      logActiveGames();
     }
     activeGames = sessionCleanup(activeGames);
   }
@@ -61,7 +47,7 @@ function parseIncoming(ws, obj) {
 
     if (game !== undefined) {
       game.players.push(ws);
-      console.log(new Date().toTimeString() + ' -- Player joined game with ID ' + gameId);
+      console.log(new Date().toTimeString() + ' ── Player joined game with ID ' + gameId);
       sendUpdate(gameId);
     }
   }
@@ -84,7 +70,7 @@ function sessionCleanup(games) {
   const ttl = 43200000; //12 hours in milliseconds
   Object.keys(games).forEach(val => {
     if ((games[val].lastupdate + ttl) < Date.now()) {
-      console.log(new Date().toTimeString() + ' -- Found inactive game with ID ' + val);
+      console.log(new Date().toTimeString() + ' ── Found inactive game with ID ' + val);
       removeGame(val);
     }
   });
@@ -104,7 +90,7 @@ function removeGame(gameId) {
   })
 
   delete activeGames[gameId];
-  console.log(new Date().toTimeString() + ' -- Removed game with ID ' + gameId);
+  console.log(new Date().toTimeString() + ' ── Removed game with ID ' + gameId);
 }
 
 function sendUpdate(gameId) {
@@ -114,12 +100,21 @@ function sendUpdate(gameId) {
     data : game.state
   }
 
+  game.admin.send(JSON.stringify(json))
   game.players.forEach((player) => {
     if (player.readyState == player.OPEN) {
       player.send(JSON.stringify(json));
     }
   });
-  console.log(new Date().toTimeString() + ' -- Sent updates for game with ID ' + gameId);
+  console.log(new Date().toTimeString() + ' ── Sent updates for game with ID ' + gameId);
+}
+
+function logActiveGames() {
+  let games = activeGames;
+  console.log(new Date().toTimeString() + ' ┬─ Active games:');
+  Object.keys(games).forEach(val => {
+    console.log('                        └─ #' + val + ' last updated ' + new Date(games[val].lastupdate).toTimeString());
+  });
 }
 
 wss.on('connection', function connection(ws) {
