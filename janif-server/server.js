@@ -117,8 +117,9 @@ function logActiveGames() {
   });
 }
 
-wss.on('connection', function connection(ws) {
-  console.log("CLIENT CONNECTED");
+wss.on('connection', function connection(ws, req) {
+  const ip = req.connection.remoteAddress;
+  console.log(new Date().toTimeString() + ' ── New connection from ' + ip);
   ws.on('message', function incoming(message) {
     parseIncoming(ws, message)
   });
