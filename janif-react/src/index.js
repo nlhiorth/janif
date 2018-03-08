@@ -4,7 +4,7 @@ import App from './App';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import janifApp from './reducers/reducers';
-//import { loadState, saveState } from './localStorage';
+import { loadState, saveState, timeStamp, clearState } from './localStorage';
 import { newID, updatePlayers, resetState } from './actions/actions';
 import './index.css';
 
@@ -18,16 +18,19 @@ socket.addEventListener('message', function (event) {
 
   switch (message.action) {
     case 'NEW_GAME_ID':
-      store.dispatch(newID(message.data));
+      saveState({
+        id: store.dispatch(newID(message.data)).id
+      });
       break;
 
     case 'UPDATE_PLAYERS':
-      console.log(message.data)
       store.dispatch(updatePlayers(message.data));
+      timeStamp();
       break;
 
     case 'CLEAR_GAME':
       store.dispatch(resetState());
+      clearState();
       break;
 
     default:
@@ -50,11 +53,7 @@ store.subscribe(() => {
   }
   //saveState(store.getState());
 });
-/*
-let unsubscribe = store.subscribe(() =>
-  console.log(store.getState())
-)
-*/
+
 
 ReactDOM.render(
   <Provider store={store}>

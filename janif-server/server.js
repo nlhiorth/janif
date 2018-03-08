@@ -83,6 +83,7 @@ function removeGame(gameId) {
     action : 'CLEAR_GAME'
   }
 
+  game.admin.send(JSON.stringify(json));
   game.players.forEach((player) => {
     if (player.readyState == player.OPEN) {
       player.send(JSON.stringify(json));
@@ -100,7 +101,7 @@ function sendUpdate(gameId) {
     data : game.state
   }
 
-  game.admin.send(JSON.stringify(json))
+  game.admin.send(JSON.stringify(json));
   game.players.forEach((player) => {
     if (player.readyState == player.OPEN) {
       player.send(JSON.stringify(json));
