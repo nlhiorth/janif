@@ -44,6 +44,8 @@ function parseIncoming(ws, obj) {
       game.players.push(ws);
       console.log(new Date().toTimeString() + ' ── Player joined game with ID ' + gameId);
       sendUpdate(gameId);
+    } else {
+      reject(ws);
     }
   }
 
@@ -118,6 +120,7 @@ function reject(ws, message = 'Game not found') {
     action: 'CONNECTION_REJECTED',
     data: message
   }
+  console.log(new Date().toTimeString() + ' ── Rejected with: ' + message);
   ws.send(JSON.stringify(json));
 }
 
