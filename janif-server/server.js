@@ -15,13 +15,8 @@ function parseIncoming(ws, obj) {
   if (obj.action === 'NEW_GAME') {
     var hash = makeGameId();
 
-    if (activeGames[hash] !== undefined) {
-      console.log("PLAYER JOINED");
-      activeGames[hash].players.push(ws);
-    } else {
-      activeGames[hash] = {admin : ws, players : [], state : {}, lastupdate: Date.now()};
-      console.log(new Date(activeGames[hash].lastupdate).toTimeString() + ' ── Started new game with ID: ' + hash);
-    }
+    activeGames[hash] = {admin : ws, players : [], state : {}, lastupdate: Date.now()};
+    console.log(new Date(activeGames[hash].lastupdate).toTimeString() + ' ── Started new game with ID: ' + hash);
 
     ws.send(JSON.stringify({action : 'NEW_GAME_ID', data : hash}))
   }
@@ -116,6 +111,14 @@ function logActiveGames() {
   Object.keys(games).forEach(val => {
     console.log('                        └─ #' + val + ' last updated ' + new Date(games[val].lastupdate).toTimeString());
   });
+}
+
+function reject(ws, message = 'Game not found') {
+  let json = {
+    action: 'CONNECTION_REJECTED',
+    data: message
+  }
+  ws.send(JSON.stringify(json));
 }
 
 wss.on('connection', function connection(ws, req) {
